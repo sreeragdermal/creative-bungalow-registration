@@ -15,8 +15,6 @@ const registrationEnabled = config.registrationEnabled === true;
 document.getElementById("upi-id").textContent = config.upiId || "UPI ID not configured";
 setupBanner.hidden = hasProjectConfig && registrationEnabled;
 
-const submitButton = document.getElementById("submit-button");
-
 if (submitButton) {
   submitButton.disabled = !registrationEnabled;
   submitButton.textContent = registrationEnabled
