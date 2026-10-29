@@ -140,6 +140,32 @@ function renderRows() {
     } else {
       review.append(el("span", paymentStatus === "verified" ? "Reviewed ✓" : "Rejected", "admin-status"));
     }
+    const deleteButton = el("button", "Delete entry", "admin-action");
+    deleteButton.type = "button";
+    deleteButton.addEventListener("click", async () => {
+      const confirmation = window.prompt(
+        `Permanently delete ${registration.full_name} (reference ${registration.registration_code}) and its payment screenshot? This cannot be undone. Type the exact reference code to confirm:`
+      );
+      if (confirmation === null) return;
+      if (confirmation.trim() !== registration.registration_code) {
+        window.alert("Reference code did not match. Nothing was deleted.");
+        return;
+      }
+      deleteButton.disabled = true;
+      setNotice("Deleting registration and its private screenshot…");
+      try {
+        const result = await callAdmin("delete-registration", {
+          registrationId: registration.id,
+          confirmationCode: confirmation.trim()
+        });
+        setNotice(result.message || "Registration deleted.");
+        await loadRegistrations();
+      } catch (error) {
+        setNotice(error?.message || "Could not delete registration.");
+        deleteButton.disabled = false;
+      }
+    });
+    review.append(deleteButton);
     tr.append(review);
     tableBody.append(tr);
   }
