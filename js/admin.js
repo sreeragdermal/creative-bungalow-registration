@@ -237,6 +237,27 @@ document.getElementById("signout-button").addEventListener("click", async () => 
   setNotice("");
 });
 document.getElementById("refresh-button").addEventListener("click", loadRegistrations);
+
+const createTestButton = document.getElementById("create-test-registration");
+const testToolsResult = document.getElementById("test-tools-result");
+createTestButton.addEventListener("click", async () => {
+  if (!window.confirm("Create one clearly labelled TEST ONLY registration with a dummy screenshot? No payment will be made. It temporarily uses one place until cleanup.")) return;
+  createTestButton.disabled = true;
+  testToolsResult.className = "form-message";
+  testToolsResult.textContent = "Creating dummy test entry…";
+  try {
+    const result = await callAdmin("create-test-registration");
+    testToolsResult.className = "form-message success";
+    testToolsResult.textContent = result.message + " Reference: " + result.registrationCode;
+    await loadRegistrations();
+  } catch (error) {
+    testToolsResult.className = "form-message error";
+    testToolsResult.textContent = error?.message || "Could not create dummy test entry.";
+  } finally {
+    createTestButton.disabled = false;
+  }
+});
+
 filterInput.addEventListener("input", renderRows);
 preflightButton.addEventListener("click", async () => {
   if (!preflightToken) {
