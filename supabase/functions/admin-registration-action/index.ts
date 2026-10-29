@@ -150,37 +150,48 @@ Deno.serve(async (req: Request) => {
 
   if (body.action === "delete-test-registrations") {
     const query = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
-    query.searchParams.set("select", "id,payment_screenshot_path,full_name,payment_status,registration_status");
+    query.searchParams.set("select", "id,payment_screenshot_path,full_name");
     query.searchParams.set("full_name", "eq.TEST ONLY - DO NOT CONTACT");
-    query.searchParams.set("payment_status", "eq.pending");
-    query.searchParams.set("registration_status", "eq.pending");
     const listResponse = await fetch(query, { headers: { "apikey": adminKey } });
-    if (!listResponse.ok) return json(origin, { error: "Could not find pending test records for cleanup." }, 502);
+    if (!listResponse.ok) return json(origin, { error: "Could not find test records for cleanup." }, 502);
     const testRows = await listResponse.json();
     if (!Array.isArray(testRows)) return json(origin, { error: "Unexpected test cleanup response." }, 502);
 
     let deleted = 0;
+    let skipped = 0;
     for (const row of testRows) {
       const path = typeof row.payment_screenshot_path === "string" ? row.payment_screenshot_path : "";
-      if (!path.startsWith("pending/test-only-")) continue;
+      // Never touch genuine participant records or non-test uploads.
+      if (row.full_name !== "TEST ONLY - DO NOT CONTACT" || !path.startsWith("pending/test-only-")) {
+        skipped++;
+        continue;
+      }
       const storageResponse = await fetch(`${SUPABASE_URL}/storage/v1/object/payment-screenshots`, {
         method: "DELETE",
         headers: { "apikey": adminKey, "Content-Type": "application/json" },
         body: JSON.stringify({ prefixes: [path] }),
       });
-      if (!storageResponse.ok) continue;
+      if (!storageResponse.ok) {
+        skipped++;
+        continue;
+      }
       const deleteUrl = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
       deleteUrl.searchParams.set("id", `eq.${row.id}`);
       deleteUrl.searchParams.set("full_name", "eq.TEST ONLY - DO NOT CONTACT");
-      deleteUrl.searchParams.set("payment_status", "eq.pending");
-      deleteUrl.searchParams.set("registration_status", "eq.pending");
+      deleteUrl.searchParams.set("payment_screenshot_path", `eq.${path}`);
       const deleteResponse = await fetch(deleteUrl, {
         method: "DELETE",
         headers: { "apikey": adminKey, "Prefer": "return=minimal" },
       });
       if (deleteResponse.ok) deleted++;
+      else skipped++;
     }
-    return json(origin, { ok: true, deleted, message: `Removed ${deleted} pending dummy test record(s). Public registration remains closed.` });
+    return json(origin, {
+      ok: true,
+      deleted,
+      skipped,
+      message: `Removed ${deleted} test-only dummy record(s)${skipped ? `; ${skipped} skipped because they could not be safely removed` : ""}. Public registration remains closed.`,
+    });
   }
 
   if (body.action === "backend-preflight") {
