@@ -25,6 +25,14 @@
 <section id="dashboard" hidden>
 <header class="admin-header"><div><p class="admin-top-label">PRIVATE AREA / 02</p><h1>Registration desk.</h1><p>Review screenshots and update payment status.</p></div><button class="copy-button" id="signout-button" type="button">Sign out ↗</button></header>
 <div class="notice warning" id="admin-notice" role="status" hidden></div>
+<div class="admin-card" id="backend-preflight-card">
+<p class="admin-top-label">PRIVATE DIAGNOSTICS</p>
+<h2>Backend readiness check</h2>
+<p class="admin-status">Administrator-only, read-only checks. This verifies server-side Turnstile, private screenshot bucket and registration RPC availability. It does not create participant records. Public registration remains closed.</p>
+<div class="captcha-wrap"><div id="backend-preflight-turnstile"></div><p id="backend-preflight-captcha-note">Complete anti-spam verification to run the checks.</p></div>
+<button class="button button-dark" id="run-backend-preflight" type="button" disabled>Run readiness check ↗</button>
+<p class="form-message" id="backend-preflight-result" role="status" aria-live="polite"></p>
+</div>
 <div class="admin-card">
 <div class="admin-toolbar"><div><h2>Participants</h2><p class="admin-status" id="last-updated">Loading registrations…</p></div><input id="filter-input" type="search" placeholder="Search name, code, email or phone" aria-label="Search registrations"><button class="copy-button" id="refresh-button" type="button">Refresh ↻</button></div>
 <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Participant</th><th>Reference</th><th>Details</th><th>Payment</th><th>Screenshot</th><th>Review</th></tr></thead><tbody id="registrations-body"><tr><td colspan="6" class="admin-empty">Loading…</td></tr></tbody></table></div>
