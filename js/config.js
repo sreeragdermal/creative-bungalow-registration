@@ -5,7 +5,7 @@ window.CREATIVE_BUNGALOW_CONFIG = {
   supabasePublishableKey: "sb_publishable_zFmh8APWvNWYayz0DGuYHg_pTZtDk-a",
   submitFunctionName: "submit-registration",
   turnstileSiteKey: "0x4AAAAAAFq04RqMcGl2-SO4",
-  upiId: "dummy@okicici",
+  upiId: "sreeragdermal-2@oksbi",
   eventName: "ക്രീയേറ്റീവ് ബംഗ്ലാവ്",
   feeAmount: 3000,
   maxParticipants: 100,
