@@ -91,6 +91,77 @@ Deno.serve(async (req: Request) => {
   try { body = await req.json(); }
   catch { return json(origin, { error: "Invalid request body." }, 400); }
 
+  if (body.action === "backend-preflight") {
+    const token = typeof body.turnstileToken === "string" ? body.turnstileToken.trim() : "";
+    const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY") ?? "";
+    if (!token || !turnstileSecret) {
+      return json(origin, { error: "Turnstile token or server secret is missing." }, 400);
+    }
+
+    try {
+      const form = new URLSearchParams({ secret: turnstileSecret, response: token });
+      const verification = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: form,
+      });
+      const result = await verification.json();
+      if (!verification.ok || result.success !== true ||
+          result.action !== "registration" ||
+          result.hostname !== new URL(origin).hostname) {
+        return json(origin, { error: "Turnstile server verification failed. Check the widget, hostname and secret." }, 400);
+      }
+    } catch {
+      return json(origin, { error: "Could not reach the Turnstile verification service." }, 502);
+    }
+
+    const checks: Record<string, string> = {
+      adminSession: "passed",
+      turnstileServerVerification: "passed",
+      serverKeyConfigured: "passed",
+    };
+
+    // Read-only bucket check; no participant files are created or changed.
+    try {
+      const bucketResponse = await fetch(`${SUPABASE_URL}/storage/v1/bucket/payment-screenshots`, {
+        headers: { "apikey": adminKey },
+      });
+      if (!bucketResponse.ok) {
+        checks.privateScreenshotBucket = "failed";
+      } else {
+        const bucket = await bucketResponse.json();
+        checks.privateScreenshotBucket = bucket.public === false ? "passed" : "failed";
+      }
+    } catch {
+      checks.privateScreenshotBucket = "failed";
+    }
+
+    // OPTIONS probes the RPC route without calling it or inserting a registration.
+    try {
+      const rpcResponse = await fetch(`${SUPABASE_URL}/rest/v1/rpc/create_registration_with_capacity`, {
+        method: "OPTIONS",
+        headers: { "apikey": adminKey, "Accept": "application/json" },
+      });
+      checks.registrationRpc = rpcResponse.ok ? "passed" : "failed";
+      await rpcResponse.body?.cancel();
+    } catch {
+      checks.registrationRpc = "failed";
+    }
+
+    const failed = Object.entries(checks).filter(([, status]) => status !== "passed").map(([name]) => name);
+    if (failed.length) {
+      return json(origin, {
+        error: "Some read-only checks failed: " + failed.join(", ") + ". Public registration remains closed.",
+        checks,
+      }, 502);
+    }
+    return json(origin, {
+      ok: true,
+      checks,
+      message: "Read-only preflight passed: admin authorization, Turnstile server verification, server key availability, private screenshot bucket and registration RPC presence. This does not yet prove that a real registration can be saved; public registration remains closed.",
+    });
+  }
+
   if (body.action === "list") {
     const target = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
     target.searchParams.set("select", "id,registration_code,full_name,mobile,place,email,designation,experience,work_mode,attended_previous_season,fee_amount,payment_screenshot_path,payment_status,registration_status,created_at");

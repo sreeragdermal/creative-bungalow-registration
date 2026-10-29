@@ -11,6 +11,11 @@ const notice = document.getElementById("admin-notice");
 const tableBody = document.getElementById("registrations-body");
 const filterInput = document.getElementById("filter-input");
 const lastUpdated = document.getElementById("last-updated");
+const preflightButton = document.getElementById("run-backend-preflight");
+const preflightResult = document.getElementById("backend-preflight-result");
+const preflightCaptchaNote = document.getElementById("backend-preflight-captcha-note");
+let preflightWidgetId = null;
+let preflightToken = "";
 
 let client = null;
 let allRegistrations = [];
@@ -159,10 +164,48 @@ async function loadRegistrations() {
     setNotice(error?.message || "Could not load registrations.");
   }
 }
+function renderPreflightCaptcha() {
+  if (dashboard.hidden || !window.turnstile || preflightWidgetId !== null) return;
+  if (!setupKey(config.turnstileSiteKey)) {
+    preflightCaptchaNote.textContent = "Turnstile site key is missing from js/config.js.";
+    return;
+  }
+  preflightWidgetId = window.turnstile.render("#backend-preflight-turnstile", {
+    sitekey: config.turnstileSiteKey,
+    action: "registration",
+    callback(token) {
+      preflightToken = token;
+      preflightButton.disabled = false;
+      preflightCaptchaNote.textContent = "Verification complete.";
+    },
+    "expired-callback"() {
+      preflightToken = "";
+      preflightButton.disabled = true;
+      preflightCaptchaNote.textContent = "Verification expired. Please verify again.";
+    },
+    "error-callback"() {
+      preflightToken = "";
+      preflightButton.disabled = true;
+      preflightCaptchaNote.textContent = "Verification could not load. Refresh and try again.";
+    }
+  });
+}
+function ensurePreflightCaptcha() {
+  if (window.turnstile) return renderPreflightCaptcha();
+  if (document.getElementById("preflight-turnstile-script")) return;
+  const script = document.createElement("script");
+  script.id = "preflight-turnstile-script";
+  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  script.async = true;
+  script.defer = true;
+  script.onload = renderPreflightCaptcha;
+  document.head.appendChild(script);
+}
 function showDashboard() {
   loginCard.hidden = true;
   dashboard.hidden = false;
   loadRegistrations();
+  ensurePreflightCaptcha();
 }
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -195,6 +238,37 @@ document.getElementById("signout-button").addEventListener("click", async () => 
 });
 document.getElementById("refresh-button").addEventListener("click", loadRegistrations);
 filterInput.addEventListener("input", renderRows);
+preflightButton.addEventListener("click", async () => {
+  if (!preflightToken) {
+    preflightResult.textContent = "Complete anti-spam verification first.";
+    return;
+  }
+  preflightButton.disabled = true;
+  preflightResult.className = "form-message";
+  preflightResult.textContent = "Running read-only checks…";
+  try {
+    const result = await callAdmin("backend-preflight", { turnstileToken: preflightToken });
+    const labels = {
+      adminSession: "Admin session",
+      turnstileServerVerification: "Turnstile server verification",
+      serverKeyConfigured: "Server key",
+      privateScreenshotBucket: "Screenshot bucket is private",
+      registrationRpc: "Registration database function"
+    };
+    const summary = Object.entries(result.checks || {}).map(([key, value]) =>
+      (value === "passed" ? "✓ " : "✗ ") + (labels[key] || key) + ": " + value
+    ).join(" | ");
+    preflightResult.className = "form-message " + (result.ok ? "success" : "error");
+    preflightResult.textContent = summary + ". " + (result.message || "");
+  } catch (error) {
+    preflightResult.className = "form-message error";
+    preflightResult.textContent = error?.message || "Readiness check failed.";
+  } finally {
+    preflightToken = "";
+    if (window.turnstile && preflightWidgetId !== null) window.turnstile.reset(preflightWidgetId);
+    preflightCaptchaNote.textContent = "Verify again before another check.";
+  }
+});
 
 (async () => {
   const supabase = ensureClient();
