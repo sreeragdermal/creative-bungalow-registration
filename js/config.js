@@ -10,5 +10,5 @@ window.CREATIVE_BUNGALOW_CONFIG = {
   feeAmount: 3000,
   maxParticipants: 100,
   githubPagesOrigin: "https://sreeragdermal.github.io",
-  registrationEnabled: false // Set true only after database, secrets, functions and tests are complete.
+  registrationEnabled: true // Public registration enabled after admin cleanup and backend secret update.
 };
