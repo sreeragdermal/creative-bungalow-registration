@@ -136,15 +136,13 @@ Deno.serve(async (req: Request) => {
       checks.privateScreenshotBucket = "failed";
     }
 
-    // Probe the RPC without valid arguments. PostgREST should reject the missing parameters;
-    // this is intentionally not a real insert and cannot create a registration.
+    // OPTIONS probes the RPC route without calling it or inserting a registration.
     try {
       const rpcResponse = await fetch(`${SUPABASE_URL}/rest/v1/rpc/create_registration_with_capacity`, {
-        method: "POST",
-        headers: { "apikey": adminKey, "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({}),
+        method: "OPTIONS",
+        headers: { "apikey": adminKey, "Accept": "application/json" },
       });
-      checks.registrationRpc = rpcResponse.status === 400 ? "passed" : "failed";
+      checks.registrationRpc = rpcResponse.ok ? "passed" : "failed";
       await rpcResponse.body?.cancel();
     } catch {
       checks.registrationRpc = "failed";
