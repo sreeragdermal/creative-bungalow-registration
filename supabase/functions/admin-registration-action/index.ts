@@ -91,6 +91,98 @@ Deno.serve(async (req: Request) => {
   try { body = await req.json(); }
   catch { return json(origin, { error: "Invalid request body." }, 400); }
 
+  if (body.action === "create-test-registration") {
+    // Admin-only test fixture. This deliberately bypasses the public registration lock,
+    // but creates only a clearly labelled pending test record and a tiny dummy PNG.
+    const testId = crypto.randomUUID();
+    const path = `pending/test-only-${testId}.png`;
+    const pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/pWQAAAAASUVORK5CYII=";
+    const binary = atob(pngBase64);
+    const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+
+    const uploadResponse = await fetch(`${SUPABASE_URL}/storage/v1/object/payment-screenshots/${path}`, {
+      method: "POST",
+      headers: {
+        "apikey": adminKey,
+        "Content-Type": "image/png",
+        "x-upsert": "false",
+        "cache-control": "3600",
+      },
+      body: bytes,
+    });
+    if (!uploadResponse.ok) return json(origin, { error: "Could not upload the dummy test screenshot." }, 502);
+
+    const rpcResponse = await fetch(`${SUPABASE_URL}/rest/v1/rpc/create_registration_with_capacity`, {
+      method: "POST",
+      headers: { "apikey": adminKey, "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        p_full_name: "TEST ONLY - DO NOT CONTACT",
+        p_mobile: "0000000000",
+        p_place: "TEST ONLY",
+        p_email: `test-only-${testId}@example.invalid`,
+        p_designation: "Test Record",
+        p_experience: "N/A",
+        p_work_mode: "Freelance",
+        p_attended_previous_season: false,
+        p_payment_screenshot_path: path,
+        p_fee_amount: 3000,
+      }),
+    });
+    const rpcResult = await rpcResponse.json().catch(() => null);
+    if (!rpcResponse.ok) {
+      await fetch(`${SUPABASE_URL}/storage/v1/object/payment-screenshots`, {
+        method: "DELETE",
+        headers: { "apikey": adminKey, "Content-Type": "application/json" },
+        body: JSON.stringify({ prefixes: [path] }),
+      }).catch(() => undefined);
+      return json(origin, { error: "Dummy test record could not be created. The screenshot cleanup was attempted." }, 500);
+    }
+    const record = Array.isArray(rpcResult) ? rpcResult[0] : rpcResult;
+    if (!record?.registration_code) {
+      return json(origin, { error: "Test record may have been created, but no registration code was returned. Check the admin list before retrying." }, 502);
+    }
+    return json(origin, {
+      ok: true,
+      registrationCode: record.registration_code,
+      message: "Dummy test record created. It is marked TEST ONLY and payment remains pending.",
+    }, 201);
+  }
+
+  if (body.action === "delete-test-registrations") {
+    const query = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
+    query.searchParams.set("select", "id,payment_screenshot_path,full_name,payment_status,registration_status");
+    query.searchParams.set("full_name", "eq.TEST ONLY - DO NOT CONTACT");
+    query.searchParams.set("payment_status", "eq.pending");
+    query.searchParams.set("registration_status", "eq.pending");
+    const listResponse = await fetch(query, { headers: { "apikey": adminKey } });
+    if (!listResponse.ok) return json(origin, { error: "Could not find pending test records for cleanup." }, 502);
+    const testRows = await listResponse.json();
+    if (!Array.isArray(testRows)) return json(origin, { error: "Unexpected test cleanup response." }, 502);
+
+    let deleted = 0;
+    for (const row of testRows) {
+      const path = typeof row.payment_screenshot_path === "string" ? row.payment_screenshot_path : "";
+      if (!path.startsWith("pending/test-only-")) continue;
+      const storageResponse = await fetch(`${SUPABASE_URL}/storage/v1/object/payment-screenshots`, {
+        method: "DELETE",
+        headers: { "apikey": adminKey, "Content-Type": "application/json" },
+        body: JSON.stringify({ prefixes: [path] }),
+      });
+      if (!storageResponse.ok) continue;
+      const deleteUrl = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
+      deleteUrl.searchParams.set("id", `eq.${row.id}`);
+      deleteUrl.searchParams.set("full_name", "eq.TEST ONLY - DO NOT CONTACT");
+      deleteUrl.searchParams.set("payment_status", "eq.pending");
+      deleteUrl.searchParams.set("registration_status", "eq.pending");
+      const deleteResponse = await fetch(deleteUrl, {
+        method: "DELETE",
+        headers: { "apikey": adminKey, "Prefer": "return=minimal" },
+      });
+      if (deleteResponse.ok) deleted++;
+    }
+    return json(origin, { ok: true, deleted, message: `Removed ${deleted} pending dummy test record(s). Public registration remains closed.` });
+  }
+
   if (body.action === "backend-preflight") {
     const token = typeof body.turnstileToken === "string" ? body.turnstileToken.trim() : "";
     const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY") ?? "";
