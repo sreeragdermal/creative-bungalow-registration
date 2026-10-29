@@ -9,5 +9,6 @@ window.CREATIVE_BUNGALOW_CONFIG = {
   eventName: "ക്രീയേറ്റീവ് ബംഗ്ലാവ്",
   feeAmount: 3000,
   maxParticipants: 100,
-  githubPagesOrigin: "https://sreeragdermal.github.io"
+  githubPagesOrigin: "https://sreeragdermal.github.io",
+  registrationEnabled: false // Set true only after database, secrets, functions and tests are complete.
 };
