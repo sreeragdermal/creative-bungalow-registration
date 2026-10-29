@@ -238,6 +238,27 @@ document.getElementById("signout-button").addEventListener("click", async () => 
 });
 document.getElementById("refresh-button").addEventListener("click", loadRegistrations);
 
+const deleteTestButton = document.getElementById("delete-test-registrations");
+const testToolsResult = document.getElementById("test-tools-result");
+deleteTestButton.addEventListener("click", async () => {
+  if (!window.confirm("Remove pending TEST ONLY dummy registrations and their dummy screenshots? Genuine participant records are not targeted.")) return;
+  deleteTestButton.disabled = true;
+  testToolsResult.className = "form-message";
+  testToolsResult.textContent = "Removing dummy test entries…";
+  try {
+    const result = await callAdmin("delete-test-registrations");
+    testToolsResult.className = "form-message success";
+    testToolsResult.textContent = result.message;
+    await loadRegistrations();
+  } catch (error) {
+    testToolsResult.className = "form-message error";
+    testToolsResult.textContent = error?.message || "Could not remove dummy test entries.";
+  } finally {
+    deleteTestButton.disabled = false;
+  }
+});
+
+
 const createTestButton = document.getElementById("create-test-registration");
 const testToolsResult = document.getElementById("test-tools-result");
 createTestButton.addEventListener("click", async () => {
