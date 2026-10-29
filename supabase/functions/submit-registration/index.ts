@@ -145,7 +145,7 @@ Deno.serve(async (req: Request) => {
     const originHost = new URL(origin).hostname;
     if (!verifyResponse.ok || verifyResult.success !== true ||
         verifyResult.action !== "registration" ||
-        (verifyResult.hostname && verifyResult.hostname !== originHost)) {
+        verifyResult.hostname !== originHost) {
       return reply(origin, { error: "Anti-spam verification failed. Please verify again." }, 400);
     }
   } catch {
