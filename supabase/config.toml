@@ -1,0 +1,8 @@
+# These functions do their own authentication and request validation.
+# submit-registration requires an allowlisted Origin and a valid Turnstile token.
+# admin-registration-action validates the Supabase access token and admin membership.
+[functions.submit-registration]
+verify_jwt = false
+
+[functions.admin-registration-action]
+verify_jwt = false
