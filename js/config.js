@@ -2,7 +2,7 @@
 // NEVER put a Supabase secret/service-role key, database password, or private token here.
 window.CREATIVE_BUNGALOW_CONFIG = {
   supabaseUrl: "https://sqvdrdmpsfaxfskvbolr.supabase.co",
-  supabasePublishableKey: "PASTE_SUPABASE_PUBLISHABLE_KEY_HERE",
+  supabasePublishableKey: "sb_publishable_zFmh8APWvNWYayz0DGuYHg_pTZtDk-a",
   submitFunctionName: "submit-registration",
   turnstileSiteKey: "0x4AAAAAAFq04RqMcGl2-SO4",
   upiId: "dummy@okicici",
