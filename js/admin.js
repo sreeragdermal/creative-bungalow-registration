@@ -260,7 +260,6 @@ deleteTestButton.addEventListener("click", async () => {
 
 
 const createTestButton = document.getElementById("create-test-registration");
-const testToolsResult = document.getElementById("test-tools-result");
 createTestButton.addEventListener("click", async () => {
   if (!window.confirm("Create one clearly labelled TEST ONLY registration with a dummy screenshot? No payment will be made. It temporarily uses one place until cleanup.")) return;
   createTestButton.disabled = true;
