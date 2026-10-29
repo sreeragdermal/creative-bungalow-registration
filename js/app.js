@@ -31,6 +31,7 @@ function renderCaptcha() {
   if (!window.turnstile || turnstileWidgetId !== null) return;
   turnstileWidgetId = window.turnstile.render("#turnstile-widget", {
     sitekey: config.turnstileSiteKey,
+    action: "registration",
     callback(token) {
       turnstileToken = token;
       turnstileTokenInput.value = token;
