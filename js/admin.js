@@ -144,11 +144,11 @@ function renderRows() {
     deleteButton.type = "button";
     deleteButton.addEventListener("click", async () => {
       const confirmation = window.prompt(
-        `Permanently delete ${registration.full_name} (reference ${registration.registration_code}) and its payment screenshot? This cannot be undone. Type the exact reference code to confirm:`
+        `Permanently delete ${registration.full_name} (reference ${registration.registration_code}) and its payment screenshot? This cannot be undone. Type OK to confirm:`
       );
       if (confirmation === null) return;
-      if (confirmation.trim() !== registration.registration_code) {
-        window.alert("Reference code did not match. Nothing was deleted.");
+      if (confirmation.trim() !== "OK") {
+        window.alert('Confirmation must be exactly "OK". Nothing was deleted.');
         return;
       }
       deleteButton.disabled = true;
@@ -156,7 +156,7 @@ function renderRows() {
       try {
         const result = await callAdmin("delete-registration", {
           registrationId: registration.id,
-          confirmationCode: confirmation.trim()
+          confirmationCode: "OK"
         });
         setNotice(result.message || "Registration deleted.");
         await loadRegistrations();
