@@ -1,0 +1,9 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+supabase/.temp/
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
