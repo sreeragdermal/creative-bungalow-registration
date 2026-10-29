@@ -11,9 +11,9 @@ let turnstileToken = "";
 
 const configured = (value) => typeof value === "string" && value.length > 0 && !value.startsWith("PASTE_");
 const hasProjectConfig = configured(config.supabaseUrl) && configured(config.supabasePublishableKey) && configured(config.turnstileSiteKey);
+const registrationEnabled = config.registrationEnabled === true;
 document.getElementById("upi-id").textContent = config.upiId || "UPI ID not configured";
-setupBanner.hidden = false; // remains visible until a real deployment check is completed
-if (hasProjectConfig) setupBanner.hidden = true;
+setupBanner.hidden = hasProjectConfig && registrationEnabled;
 
 function showMessage(text, isError = true) {
   message.textContent = text;
@@ -87,8 +87,8 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   showMessage("");
   if (!form.reportValidity()) return;
-  if (!hasProjectConfig) {
-    showMessage("Registration is not open yet. The site owner must finish the Supabase and anti-spam configuration.");
+  if (!hasProjectConfig || !registrationEnabled) {
+    showMessage("Registration is not open yet. The site owner must finish backend setup and testing before opening registrations.");
     return;
   }
   if (!turnstileToken) { showMessage("Please complete anti-spam verification first."); return; }
@@ -98,8 +98,6 @@ form.addEventListener("submit", async (event) => {
     showMessage("Please upload a JPEG or PNG screenshot no larger than 5 MB."); return;
   }
   const data = new FormData(form);
-  data.delete("consent");
-  data.delete("website");
   data.set("turnstile_token", turnstileToken);
   submitButton.disabled = true;
   submitButton.textContent = "Submitting…";
