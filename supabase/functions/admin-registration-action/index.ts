@@ -194,6 +194,62 @@ Deno.serve(async (req: Request) => {
     });
   }
 
+  if (body.action === "delete-registration") {
+    const id = typeof body.registrationId === "string" ? body.registrationId : "";
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id) ||
+        body.confirmationCode !== "OK") {
+      return json(origin, { error: 'Invalid delete request. Confirmation must be exactly "OK".' }, 400);
+    }
+
+    // Fetch the exact record server-side; never accept a storage path from the browser.
+    const lookup = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
+    lookup.searchParams.set("select", "id,registration_code,full_name,payment_screenshot_path");
+    lookup.searchParams.set("id", `eq.${id}`);
+    lookup.searchParams.set("limit", "1");
+    const lookupResponse = await fetch(lookup, { headers: { "apikey": adminKey } });
+    if (!lookupResponse.ok) return json(origin, { error: "Could not look up the registration." }, 502);
+    const found = await lookupResponse.json();
+    if (!Array.isArray(found) || found.length !== 1) {
+      return json(origin, { error: "Registration was not found." }, 404);
+    }
+
+    const row = found[0];
+    const path = typeof row.payment_screenshot_path === "string" ? row.payment_screenshot_path : "";
+    // Only remove objects in the expected private bucket folder; reject traversal or unexpected paths.
+    if (path && (!path.startsWith("pending/") || path.includes("..") || path.startsWith("/") || path.includes("\\\\"))) {
+      return json(origin, { error: "The screenshot path is unexpected. No changes were made." }, 409);
+    }
+
+    if (path) {
+      const storageResponse = await fetch(`${SUPABASE_URL}/storage/v1/object/payment-screenshots`, {
+        method: "DELETE",
+        headers: { "apikey": adminKey, "Content-Type": "application/json" },
+        body: JSON.stringify({ prefixes: [path] }),
+      });
+      if (!storageResponse.ok) {
+        return json(origin, { error: "Could not remove the private screenshot, so the registration was kept." }, 502);
+      }
+    }
+
+    const deleteUrl = new URL(`${SUPABASE_URL}/rest/v1/registrations`);
+    deleteUrl.searchParams.set("id", `eq.${id}`);
+    const deleteResponse = await fetch(deleteUrl, {
+      method: "DELETE",
+      headers: { "apikey": adminKey, "Prefer": "return=representation" },
+    });
+    if (!deleteResponse.ok) {
+      return json(origin, { error: "The screenshot was removed, but the registration row could not be removed. Please check the admin list." }, 502);
+    }
+    const deletedRows = await deleteResponse.json().catch(() => []);
+    if (!Array.isArray(deletedRows) || deletedRows.length !== 1) {
+      return json(origin, { error: "The screenshot was removed, but the registration row was not confirmed deleted. Please check the admin list." }, 502);
+    }
+    return json(origin, {
+      ok: true,
+      message: `Deleted registration ${row.registration_code} and its private screenshot.`,
+    });
+  }
+
   if (body.action === "backend-preflight") {
     const token = typeof body.turnstileToken === "string" ? body.turnstileToken.trim() : "";
     const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY") ?? "";
