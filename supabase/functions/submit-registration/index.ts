@@ -80,6 +80,12 @@ Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(origin) });
   if (req.method !== "POST") return reply(origin, { error: "Method not allowed." }, 405);
 
+  // Enforce the registration switch on the server as well as in the static frontend.
+  // Missing or false keeps the public endpoint closed by default.
+  if (Deno.env.get("REGISTRATION_ENABLED") !== "true") {
+    return reply(origin, { error: "Registration is not open yet. Please check back later." }, 403);
+  }
+
   const contentLength = Number(req.headers.get("content-length") ?? 0);
   if (contentLength > 6 * 1024 * 1024) return reply(origin, { error: "Request is too large." }, 413);
 
