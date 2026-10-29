@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#151a16">
+<title>Admin — Creative Bungalow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body class="admin-page">
+<main class="admin-container">
+<a class="brand" href="./index.html"><span class="brand-mark">CB<span>↗</span></span><span class="brand-name">Creative<br>Bungalow</span></a>
+<section class="admin-login admin-card" id="login-card">
+<p class="admin-top-label">PRIVATE AREA / 01</p><h1>Admin sign in</h1>
+<p class="admin-status">Sign in with the event administrator account. Registration participant accounts cannot be created from this page.</p>
+<form id="login-form">
+<label class="field"><span>Email address</span><input name="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+<label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="Your admin password"></label>
+<p class="form-message" id="login-message" role="status" aria-live="polite"></p>
+<button class="button button-dark" id="login-button" type="submit">Sign in securely <b>↗</b></button>
+</form>
+<p class="form-footnote">Admin access must be enabled for your Supabase user in the registration_admins table. There is no public sign-up on this page.</p>
+</section>
+<section id="dashboard" hidden>
+<header class="admin-header"><div><p class="admin-top-label">PRIVATE AREA / 02</p><h1>Registration desk.</h1><p>Review screenshots and update payment status.</p></div><button class="copy-button" id="signout-button" type="button">Sign out ↗</button></header>
+<div class="notice warning" id="admin-notice" role="status" hidden></div>
+<div class="admin-card">
+<div class="admin-toolbar"><div><h2>Participants</h2><p class="admin-status" id="last-updated">Loading registrations…</p></div><input id="filter-input" type="search" placeholder="Search name, code, email or phone" aria-label="Search registrations"><button class="copy-button" id="refresh-button" type="button">Refresh ↻</button></div>
+<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Participant</th><th>Reference</th><th>Details</th><th>Payment</th><th>Screenshot</th><th>Review</th></tr></thead><tbody id="registrations-body"><tr><td colspan="6" class="admin-empty">Loading…</td></tr></tbody></table></div>
+</div>
+<p class="admin-status">Screenshot links expire after five minutes. Payment verification is manual; a screenshot alone is not proof that a transfer settled.</p>
+</section>
+<footer class="site-footer" style="margin-top:40px;border-radius:12px"><a class="brand" href="./index.html"><span class="brand-mark">CB<span>↗</span></span><span class="brand-name">Creative<br>Bungalow</span></a><span>PRIVATE ADMIN · DO NOT SHARE</span><a href="./index.html">Event page ↗</a></footer>
+</main>
+<script src="./js/config.js"></script><script type="module" src="./js/admin.js"></script>
+</body></html>
