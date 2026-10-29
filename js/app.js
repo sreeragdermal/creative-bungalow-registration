@@ -15,6 +15,15 @@ const registrationEnabled = config.registrationEnabled === true;
 document.getElementById("upi-id").textContent = config.upiId || "UPI ID not configured";
 setupBanner.hidden = hasProjectConfig && registrationEnabled;
 
+const submitButton = document.getElementById("submit-button");
+
+if (submitButton) {
+  submitButton.disabled = !registrationEnabled;
+  submitButton.textContent = registrationEnabled
+    ? "Submit registration"
+    : "Registration not open yet";
+}
+
 function showMessage(text, isError = true) {
   message.textContent = text;
   message.className = "form-message" + (text ? (isError ? " error" : " success") : "");
