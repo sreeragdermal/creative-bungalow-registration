@@ -780,3 +780,27 @@ body:before{
  .invite-button{min-height:54px;padding:0 19px;gap:28px}
 }
 @media(prefers-reduced-motion:reduce){.invite-button{transition:none}}
+
+/* Transparent footer bar with the official Creative Bungalow logo */
+.site-footer{
+  background:transparent!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:none!important;
+  min-height:92px;
+  padding:20px 5.5%;
+  position:relative;
+}
+.site-footer .footer-logo{
+  display:block;
+  width:clamp(132px,12vw,160px);
+  height:auto;
+  max-height:52px;
+  object-fit:contain;
+}
+.site-footer>span{color:rgba(255,255,255,.62)!important}
+.site-footer>a:last-child{color:#f5f2f4!important;transition:color .2s ease}
+.site-footer>a:last-child:hover{color:var(--cb-pink)!important}
+@media(max-width:700px){
+ .site-footer{background:transparent!important;padding:20px 18px;min-height:84px}
+ .site-footer .footer-logo{width:120px;max-height:44px}
+}
