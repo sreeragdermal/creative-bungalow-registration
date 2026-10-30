@@ -119,7 +119,7 @@ function renderRows() {
     const paymentCell = document.createElement("td");
     const paymentStatus = String(registration.payment_status || "pending");
     paymentCell.append(el("span", paymentStatus.toUpperCase(), "status-pill " + paymentStatus));
-    paymentCell.append(el("div", "₹" + Number(registration.fee_amount || 3000).toLocaleString("en-IN"), "admin-status"));
+    paymentCell.append(el("div", "₹" + Number(registration.fee_amount || 2999).toLocaleString("en-IN"), "admin-status"));
     paymentCell.append(el("div", registration.registration_status || "submitted", "admin-status"));
     tr.append(paymentCell);
     const screenshotCell = document.createElement("td");

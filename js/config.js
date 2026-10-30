@@ -5,9 +5,9 @@ window.CREATIVE_BUNGALOW_CONFIG = {
   supabasePublishableKey: "sb_publishable_zFmh8APWvNWYayz0DGuYHg_pTZtDk-a",
   submitFunctionName: "submit-registration",
   turnstileSiteKey: "0x4AAAAAAFq04RqMcGl2-SO4",
-  upiId: "sreeragdermal-2@oksbi",
+  upiId: "9048041277-2@ybl",
   eventName: "ക്രീയേറ്റീവ് ബംഗ്ലാവ്",
-  feeAmount: 3000,
+  feeAmount: 2999,
   maxParticipants: 100,
   githubPagesOrigin: "https://sreeragdermal.github.io",
   registrationEnabled: true // Public registration enabled after admin cleanup and backend secret update.

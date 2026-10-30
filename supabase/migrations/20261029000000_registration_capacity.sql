@@ -12,7 +12,7 @@ create or replace function public.create_registration_with_capacity(
   p_work_mode text,
   p_attended_previous_season boolean,
   p_payment_screenshot_path text,
-  p_fee_amount integer default 3000
+  p_fee_amount integer default 2999
 )
 returns table (
   id uuid,
@@ -25,7 +25,7 @@ as $function$
 declare
   v_active_count integer;
 begin
-  if p_fee_amount <> 3000 then
+  if p_fee_amount <> 2999 then
     raise exception using message = 'INVALID_FEE_AMOUNT', errcode = '22023';
   end if;
 
@@ -70,7 +70,7 @@ begin
       p_experience,
       p_work_mode,
       p_attended_previous_season,
-      3000,
+      2999,
       p_payment_screenshot_path,
       'pending',
       'submitted'

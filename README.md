@@ -5,7 +5,7 @@ A premium mobile-friendly registration website for **ക്രീയേറ്റ
 ## Features
 
 - Responsive event landing page and participant form
-- ₹3,000 payment instructions and JPEG/PNG screenshot upload (max 5 MB)
+- ₹2,999 payment instructions and JPEG/PNG screenshot upload (max 5 MB)
 - Supabase backend with private screenshot storage
 - Capacity enforcement at 100 active registrations
 - Branded success page with registration reference

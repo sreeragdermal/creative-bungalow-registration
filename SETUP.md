@@ -107,7 +107,7 @@ Only when these checks have passed, update `registrationEnabled: false` to `regi
 - Event: `ക്രീയേറ്റീവ് ബംഗ്ലാവ്`
 - Dates: November 28–29, 2026
 - Venue: Wayanad, Kerala
-- Registration fee: ₹3,000
+- Registration fee: ₹2,999
 - Capacity: 100
 - UPI ID in current config: `dummy@okicici`
 
