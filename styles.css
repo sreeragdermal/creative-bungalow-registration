@@ -1009,3 +1009,22 @@ a.invite-button{
  .admin-page .site-footer{padding:20px 6px;flex-wrap:wrap}
  .admin-page .site-footer>span{order:3;width:100%}
 }
+
+/* Remove the globally tiled brand-texture layer from every page.
+   Keep texture and lighting only where a section explicitly defines it (e.g. homepage hero). */
+body:before{display:none!important;background-image:none!important;opacity:0!important}
+.admin-page{
+  background:#0b0b0e!important;
+  background-image:none!important;
+}
+.admin-page:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+.admin-page .admin-container,
+.admin-page #dashboard,
+.admin-page .admin-header{
+  background:transparent!important;
+  background-image:none!important;
+}
