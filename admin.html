@@ -18,28 +18,28 @@
 <label class="field"><span>Email address</span><input name="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
 <label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="Your admin password"></label>
 <p class="form-message" id="login-message" role="status" aria-live="polite"></p>
-<button class="button button-dark" id="login-button" type="submit">Sign in securely <b>↗</b></button>
+<button class="button button-dark" id="login-button" type="submit">Sign in securely <b>↗︎</b></button>
 </form>
 <p class="form-footnote">Admin access must be enabled for your Supabase user in the registration_admins table. There is no public sign-up on this page.</p>
 </section>
 <section id="dashboard" hidden>
-<header class="admin-header"><div><p class="admin-top-label">PRIVATE AREA / 02</p><h1>Registration desk.</h1><p>Review screenshots and update payment status.</p></div><button class="copy-button" id="signout-button" type="button">Sign out ↗</button></header>
+<header class="admin-header"><div><p class="admin-top-label">PRIVATE AREA / 02</p><h1>Registration desk.</h1><p>Review screenshots and update payment status.</p></div><button class="copy-button" id="signout-button" type="button">Sign out ↗︎</button></header>
 <div class="notice warning" id="admin-notice" role="status" hidden></div>
 <div class="admin-card" id="backend-preflight-card">
 <p class="admin-top-label">PRIVATE DIAGNOSTICS</p>
 <h2>Backend readiness check</h2>
 <p class="admin-status">Administrator-only, read-only checks. This verifies server-side Turnstile, private screenshot bucket and registration RPC availability. It does not create participant records. Public registration remains closed.</p>
 <div class="captcha-wrap"><div id="backend-preflight-turnstile"></div><p id="backend-preflight-captcha-note">Complete anti-spam verification to run the checks.</p></div>
-<button class="button button-dark" id="run-backend-preflight" type="button" disabled>Run readiness check ↗</button>
+<button class="button button-dark" id="run-backend-preflight" type="button" disabled>Run readiness check ↗︎</button>
 <p class="form-message" id="backend-preflight-result" role="status" aria-live="polite"></p>
 </div>
 <div class="admin-card">
-<div class="admin-toolbar"><div><h2>Participants</h2><p class="admin-status" id="last-updated">Loading registrations…</p></div><input id="filter-input" type="search" placeholder="Search name, code, email or phone" aria-label="Search registrations"><button class="copy-button" id="export-button" type="button">Export Excel ↓</button><button class="copy-button" id="refresh-button" type="button">Refresh ↻</button></div>
+<div class="admin-toolbar"><div><h2>Participants</h2><p class="admin-status" id="last-updated">Loading registrations…</p></div><input id="filter-input" type="search" placeholder="Search name, code, email or phone" aria-label="Search registrations"><button class="copy-button" id="export-button" type="button">Export Excel ↓︎</button><button class="copy-button" id="refresh-button" type="button">Refresh ↻︎</button></div>
 <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Participant</th><th>Reference</th><th>Details</th><th>Payment</th><th>Screenshot</th><th>Review</th></tr></thead><tbody id="registrations-body"><tr><td colspan="6" class="admin-empty">Loading…</td></tr></tbody></table></div>
 </div>
 <p class="admin-status">Screenshot links expire after five minutes. Payment verification is manual; a screenshot alone is not proof that a transfer settled.</p>
 </section>
-<footer class="site-footer" style="margin-top:40px"><a class="brand" href="./index.html" aria-label="Creative Bungalow home"><img class="brand-logo" src="./assets/brand/Logo%20white.png" alt="Creative Bungalow"></a><span>PRIVATE ADMIN · DO NOT SHARE</span><nav class="footer-socials" aria-label="Instagram accounts"><a href="https://www.instagram.com/spasify_/" target="_blank" rel="noopener noreferrer">@spasify_ <span aria-hidden="true">↗</span></a><a href="https://www.instagram.com/spase_interactions/" target="_blank" rel="noopener noreferrer">@spase_interactions <span aria-hidden="true">↗</span></a></nav><a href="./index.html">Event page ↗</a></footer>
+<footer class="site-footer" style="margin-top:40px"><a class="brand" href="./index.html" aria-label="Creative Bungalow home"><img class="brand-logo" src="./assets/brand/Logo%20white.png" alt="Creative Bungalow"></a><span>PRIVATE ADMIN · DO NOT SHARE</span><nav class="footer-socials" aria-label="Instagram accounts"><a href="https://www.instagram.com/spasify_/" target="_blank" rel="noopener noreferrer">@spasify_ <span aria-hidden="true">↗︎</span></a><a href="https://www.instagram.com/spase_interactions/" target="_blank" rel="noopener noreferrer">@spase_interactions <span aria-hidden="true">↗︎</span></a></nav><a href="./index.html">Event page ↗︎</a></footer>
 </main>
 <script src="./js/config.js"></script><script type="module" src="./js/admin.js"></script>
 </body></html>

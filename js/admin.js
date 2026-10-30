@@ -127,7 +127,7 @@ function renderRows() {
     tr.append(paymentCell);
     const screenshotCell = document.createElement("td");
     if (registration.screenshotUrl) {
-      const link = el("a", "View screenshot ↗", "signed-link");
+      const link = el("a", "View screenshot ↗︎", "signed-link");
       link.href = registration.screenshotUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -280,7 +280,7 @@ loginForm.addEventListener("submit", async (event) => {
     setLoginMessage(error?.message || "Sign-in failed.");
   } finally {
     loginButton.disabled = false;
-    loginButton.innerHTML = "Sign in securely <b>↗</b>";
+    loginButton.innerHTML = "Sign in securely <b>↗︎</b>";
   }
 });
 document.getElementById("signout-button").addEventListener("click", async () => {

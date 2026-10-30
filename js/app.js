@@ -132,6 +132,6 @@ form.addEventListener("submit", async (event) => {
     if (window.turnstile && turnstileWidgetId !== null) window.turnstile.reset(turnstileWidgetId);
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = "Submit registration <b>↗</b>";
+    submitButton.innerHTML = "Submit registration <b>↗︎</b>";
   }
 });
