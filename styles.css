@@ -292,3 +292,150 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
  .media-placeholder{width:clamp(138px,42vw,190px)}
 }
 @media(prefers-reduced-motion:reduce){.media-track{animation:none;transform:none}}
+
+/* Clean editorial page structure inspired by the supplied Hortus reference.
+   Keep Creative Bungalow's existing dark palette, pink/orange accents and Space Grotesk. */
+.editorial-section{
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:clamp(64px,8vw,104px) max(6%,calc((100% - 1180px)/2));
+}
+.editorial-heading{
+  width:100%;
+  max-width:980px;
+  margin:0 auto 30px;
+  text-align:center;
+}
+.editorial-heading .eyebrow{
+  margin:0 0 15px;
+  color:#ff7435;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.16em;
+}
+.editorial-heading h2{
+  margin:0;
+  color:#f7f7fa;
+  font-family:"Space Grotesk",Arial,sans-serif;
+  font-size:clamp(38px,5.2vw,68px);
+  font-weight:700;
+  line-height:1.02;
+  letter-spacing:-.075em;
+}
+.editorial-heading h2 em{font-style:normal;color:#f23862}
+.editorial-copy{
+  max-width:950px;
+  margin:0 auto;
+}
+.editorial-copy .about-copy{
+  display:block;
+  max-width:none;
+  margin:0;
+}
+.editorial-copy .about-copy p{
+  margin:0 0 16px;
+  color:#c2c3cc;
+  font-size:14px;
+  line-height:1.9;
+}
+.edition-history{
+  max-width:1100px;
+  margin:48px auto 0;
+  border-top:1px solid rgba(255,255,255,.17);
+}
+.edition-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:34px;
+}
+.edition-entry,.edition-entry+.edition-entry{
+  min-width:0;
+  padding:30px 0 28px;
+  border:0;
+}
+.edition-entry+.edition-entry{border-left:1px solid rgba(255,255,255,.17);padding-left:34px}
+.edition-entry h3{
+  margin:0 0 16px;
+  color:#fff;
+  font-family:"Space Grotesk",Arial,sans-serif;
+  font-size:clamp(26px,3vw,36px);
+  line-height:1.1;
+  letter-spacing:-.06em;
+}
+.edition-kicker{margin:0 0 12px;color:#ff7435;font-size:10px;font-weight:700;letter-spacing:.14em}
+.edition-kicker span{color:#aeb0ba}
+.edition-copy{max-width:none}
+.edition-copy p{margin:0 0 13px;color:#b9bac4;font-size:12px;line-height:1.85}
+.upcoming-edition{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-top:4px;
+  padding:20px 0 0;
+  border-top:1px solid rgba(255,255,255,.17);
+}
+.upcoming-edition span{color:#ff7435;font-size:9px;font-weight:700;letter-spacing:.16em}
+.upcoming-edition strong{color:#fff;font-size:20px;letter-spacing:-.04em}
+.upcoming-edition small{color:#aeb0ba;font-size:11px}
+.highlights-section{background:#09090c;color:#fff}
+.editorial-subtitle{
+  max-width:680px;
+  margin:0 auto 28px;
+  text-align:center;
+  color:#b9bac4;
+  font-size:13px;
+  line-height:1.8;
+}
+.highlights-section .media-marquee{margin:34px auto 0;max-width:1180px}
+.partners-section{background:#111216;color:#fff}
+.partners-section .editorial-heading{margin-bottom:34px}
+.partners-section .partner-rail{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  border:1px solid rgba(255,255,255,.16);
+}
+.partners-section .partner-slot{
+  min-width:0;
+  min-height:110px;
+  display:grid;
+  place-items:center;
+  padding:16px;
+  color:#aeb0ba;
+  font-size:9px;
+  letter-spacing:.14em;
+}
+.partners-section .partner-slot+.partner-slot{border-left:1px solid rgba(255,255,255,.16)}
+.contact-section{
+  background:#f23862;
+  color:#fff;
+  text-align:center;
+}
+.contact-section .editorial-heading{margin-bottom:16px}
+.contact-section .editorial-heading .eyebrow{color:#fff}
+.contact-section .editorial-heading h2{color:#fff}
+.contact-section .editorial-heading h2 em{color:#111216}
+.contact-section .editorial-subtitle{color:rgba(255,255,255,.9);margin-bottom:26px}
+.contact-section>.button{display:table;margin:0 auto;background:#111216;color:#fff}
+@media(max-width:760px){
+ .editorial-section{padding:62px 6% 70px}
+ .editorial-heading{margin-bottom:24px}
+ .editorial-heading h2{font-size:clamp(36px,10vw,54px);line-height:1.04}
+ .editorial-copy .about-copy p{font-size:12px;line-height:1.85;margin-bottom:13px}
+ .edition-history{margin-top:34px}
+ .edition-grid{grid-template-columns:1fr;gap:0}
+ .edition-entry,.edition-entry+.edition-entry{padding:25px 0;border:0}
+ .edition-entry+.edition-entry{border-top:1px solid rgba(255,255,255,.17)}
+ .edition-entry h3{font-size:29px}
+ .edition-copy p{font-size:12px;line-height:1.82}
+ .upcoming-edition{gap:10px 14px}
+ .editorial-subtitle{font-size:12px;margin-bottom:22px}
+ .partners-section .partner-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .partners-section .partner-slot{min-height:82px}
+ .partners-section .partner-slot:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.16)}
+ .partners-section .partner-slot:nth-child(4){border-top:1px solid rgba(255,255,255,.16)}
+ .contact-section .editorial-heading h2{font-size:clamp(36px,10vw,54px)}
+}
