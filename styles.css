@@ -260,32 +260,41 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
 }
 
 /* Auto-moving 4:5 media gallery — media assets can be added later */
-.media-marquee{width:100%;overflow:hidden;position:relative;margin-top:34px;padding:2px 0 8px}
-.media-track{display:flex;align-items:stretch;gap:14px;width:max-content;animation:media-gallery-scroll 48s linear infinite}
+.media-marquee{width:100%;overflow:hidden;position:relative;margin-top:34px;padding:2px 0 10px}
+.media-track{display:flex;align-items:flex-start;gap:16px;width:max-content;animation:media-gallery-scroll 48s linear infinite}
 .media-marquee:hover .media-track{animation-play-state:paused}
 .media-gallery-card{
- width:clamp(190px,22vw,260px);
- aspect-ratio:4/5;
- flex:0 0 auto;
- position:relative;
- overflow:hidden;
- border:1px solid rgba(255,255,255,.16);
- background:#111116;
+  display:block;
+  position:relative;
+  flex:0 0 clamp(220px,23vw,280px);
+  width:clamp(220px,23vw,280px);
+  height:auto;
+  aspect-ratio:4 / 5;
+  box-sizing:border-box;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  background:#111116;
 }
-.media-gallery-card img,.media-gallery-card iframe{
- display:block;
- width:100%;
- height:100%;
- border:0;
- object-fit:cover;
+.media-gallery-card img,
+.media-gallery-card iframe{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+  border:0;
+  object-fit:cover;
 }
-.media-gallery-card iframe{position:absolute;inset:0}
+.media-gallery-card iframe{object-fit:fill}
 .media-gallery-duplicate{pointer-events:none}
 @keyframes media-gallery-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:760px){
- .media-marquee{margin-top:24px}
- .media-track{gap:10px;animation-duration:42s}
- .media-gallery-card{width:clamp(190px,66vw,250px)}
+  .media-marquee{margin-top:24px}
+  .media-track{gap:12px;animation-duration:42s}
+  .media-gallery-card{flex-basis:72vw;width:72vw;max-width:300px}
 }
 @media(prefers-reduced-motion:reduce){.media-track{animation:none;transform:none}}
  
