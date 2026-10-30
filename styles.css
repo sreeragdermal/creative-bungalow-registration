@@ -1226,3 +1226,45 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
 @media(prefers-reduced-motion:reduce){
   .partners-section .partner-slot img{transition:none}
 }
+
+
+/* Partner logos — transparent layout with dividers only */
+.partners-section .partner-rail{
+  background:transparent!important;
+  border:0!important;
+  gap:0;
+}
+.partners-section .partner-slot{
+  min-height:150px;
+  padding:22px clamp(18px,3vw,38px);
+  background:transparent!important;
+  border:0!important;
+}
+.partners-section .partner-slot+.partner-slot{
+  border-left:1px solid rgba(255,255,255,.24)!important;
+}
+.partners-section .partner-slot img{
+  width:100%;
+  max-width:230px;
+  height:92px;
+  object-fit:contain;
+  opacity:1;
+}
+@media(max-width:700px){
+  .partners-section .partner-slot{
+    min-height:120px;
+    padding:18px;
+  }
+  .partners-section .partner-slot img{
+    max-width:185px;
+    height:76px;
+  }
+  .partners-section .partner-slot:nth-child(3){
+    border-left:0!important;
+    border-top:1px solid rgba(255,255,255,.24)!important;
+  }
+  .partners-section .partner-slot:nth-child(4){
+    border-top:1px solid rgba(255,255,255,.24)!important;
+    border-left:1px solid rgba(255,255,255,.24)!important;
+  }
+}
