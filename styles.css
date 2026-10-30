@@ -1052,3 +1052,33 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
  }
  .registration-page #setup-banner{width:100%}
 }
+
+/* Carry the "See you in Wayanad" invitation backdrop across the full registration page */
+.registration-page{
+  background:
+    radial-gradient(ellipse at 50% 82%,rgba(255,114,44,.19),transparent 43%),
+    radial-gradient(ellipse at 50% 28%,rgba(186,45,182,.12),transparent 40%),
+    radial-gradient(rgba(255,255,255,.12) .65px,transparent .9px),
+    linear-gradient(145deg,#09090c 0%,#101015 58%,#0a0a0d 100%)!important;
+  background-size:auto,auto,12px 12px,auto!important;
+  background-attachment:fixed!important;
+}
+.registration-page main,
+.registration-page .register,
+.registration-page .closing{
+  background:transparent!important;
+  background-image:none!important;
+}
+.registration-page .closing{
+  position:relative;isolation:isolate;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.13);
+}
+.registration-page .closing:before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 82%,rgba(255,114,44,.19),transparent 43%),
+    radial-gradient(ellipse at 50% 28%,rgba(186,45,182,.12),transparent 40%),
+    radial-gradient(rgba(255,255,255,.12) .65px,transparent .9px),
+    linear-gradient(145deg,#09090c 0%,#101015 58%,#0a0a0d 100%);
+  background-size:auto,auto,12px 12px,auto;
+}
