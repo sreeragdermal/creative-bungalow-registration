@@ -1192,3 +1192,37 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
 @media(max-width:1020px){.hero-art{min-height:420px}.hero-edition-art{width:min(82%,360px);max-height:390px}}
 @media(max-width:700px){.hero-art{min-height:310px;margin-top:28px}.hero-edition-art{width:min(76%,280px);max-height:290px}.hero-orbit{width:min(94%,350px)}.hero-orbit-b{width:min(80%,290px)}}
 @media(prefers-reduced-motion:reduce){.hero-edition-art,.hero-orbit-a,.hero-orbit-b,.hero-art::before{animation:none!important}}
+
+
+/* Partner logos — use the original uploaded artwork without cropping */
+.partners-section .partner-rail{
+  align-items:stretch;
+  background:rgba(255,255,255,.025);
+}
+.partners-section .partner-slot{
+  min-height:132px;
+  padding:22px clamp(14px,2.5vw,30px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.015);
+}
+.partners-section .partner-slot img{
+  display:block;
+  width:100%;
+  max-width:190px;
+  height:72px;
+  object-fit:contain;
+  object-position:center;
+  filter:none;
+  opacity:.96;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.partners-section .partner-slot:hover img{opacity:1;transform:scale(1.035)}
+@media(max-width:700px){
+  .partners-section .partner-slot{min-height:104px;padding:16px}
+  .partners-section .partner-slot img{height:58px;max-width:150px}
+}
+@media(prefers-reduced-motion:reduce){
+  .partners-section .partner-slot img{transition:none}
+}
