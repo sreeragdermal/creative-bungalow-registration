@@ -836,3 +836,13 @@ body:before{
   background-size:auto,auto,12px 12px,auto!important;
  }
 }
+
+/* Square-corner UI system: keep circles only for the original brand artwork */
+.button,.button-lime,.button-dark,.invite-button,.nav-cta,
+.form-shell,.field input:not([type=radio]):not([type=file]),
+.choice span,.payment-box,.upi-row,.copy-button,.upload-box,
+.notice,.admin-card,.admin-toolbar input,.admin-action,
+.detail-card,.first-edition,.partner-slot,.highlight-tile,
+.about-card,.reference-box,.status-pill{
+  border-radius:0!important;
+}
