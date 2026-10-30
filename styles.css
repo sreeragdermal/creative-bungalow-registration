@@ -1095,3 +1095,51 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
     radial-gradient(ellipse at 50% 28%,rgba(186,45,182,.10),transparent 42%),
     linear-gradient(145deg,#09090c 0%,#101015 58%,#0a0a0d 100%)!important;
 }
+
+/* Registration closing invitation — cinematic gradient and subtle brand motion */
+.registration-page .closing{
+ position:relative!important;isolation:isolate!important;overflow:hidden!important;
+ min-height:540px;padding:100px 24px 110px!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ text-align:center!important;border-top:1px solid rgba(255,255,255,.12)!important;
+ background:
+  radial-gradient(ellipse at 50% 12%,rgba(186,45,182,.25),transparent 42%),
+  radial-gradient(ellipse at 50% 82%,rgba(255,114,44,.23),transparent 42%),
+  radial-gradient(ellipse at 12% 78%,rgba(57,85,198,.13),transparent 34%),
+  #050507!important;
+}
+.registration-page .closing:before{
+ content:""!important;display:block!important;position:absolute!important;inset:-15%!important;z-index:-2!important;
+ background:radial-gradient(ellipse at 20% 5%,rgba(239,51,82,.22),transparent 30%),radial-gradient(ellipse at 82% 95%,rgba(186,45,182,.18),transparent 35%);
+ filter:blur(35px);animation:cb-invite-glow 14s ease-in-out infinite alternate;
+}
+.registration-page .closing:after{
+ content:""!important;position:absolute!important;z-index:-1!important;pointer-events:none!important;
+ width:min(80vw,760px);aspect-ratio:1;border:1px solid rgba(57,85,198,.20);border-radius:50%;
+ box-shadow:0 0 0 42px rgba(239,51,82,.035),0 0 0 92px rgba(186,45,182,.025);
+ animation:cb-invite-orbit 24s ease-in-out infinite alternate;
+}
+.registration-page .closing>div{
+ color:#ff722c!important;font-size:32px!important;line-height:1!important;margin-bottom:26px!important;
+ text-shadow:0 0 24px rgba(255,114,44,.55);animation:cb-invite-star 7s ease-in-out infinite;
+}
+.registration-page .closing>p{position:relative;z-index:1;color:#f7f5f2!important;font-size:10px!important;font-weight:700!important;letter-spacing:.19em!important;margin:0 0 28px!important}
+.registration-page .closing h2{
+ position:relative;z-index:1;color:#fff!important;font-family:"Space Grotesk",Arial,sans-serif!important;
+ font-size:clamp(54px,8vw,104px)!important;line-height:.94!important;letter-spacing:-.075em!important;font-weight:700!important;margin:0 0 38px!important;
+}
+.registration-page .closing h2 em{color:#ef3352!important;font-style:normal!important}
+.registration-page .closing .button-dark{
+ position:relative;z-index:1;min-height:58px!important;padding:0 30px!important;
+ background:linear-gradient(105deg,#ef3352 0%,#ba2db6 100%)!important;color:#fff!important;border:0!important;border-radius:0!important;
+ box-shadow:0 12px 42px rgba(239,51,82,.18);
+}
+@keyframes cb-invite-glow{from{transform:translate3d(-2%,0,0) scale(.98);opacity:.72}to{transform:translate3d(2%,-1%,0) scale(1.05);opacity:1}}
+@keyframes cb-invite-orbit{from{transform:translate3d(-1%,0,0) scale(.97);opacity:.55}to{transform:translate3d(1%,-1%,0) scale(1.03);opacity:1}}
+@keyframes cb-invite-star{0%,100%{transform:rotate(0) scale(1);opacity:.9}50%{transform:rotate(18deg) scale(1.12);opacity:1}}
+@media(max-width:700px){
+ .registration-page .closing{min-height:470px;padding:78px 18px!important}
+ .registration-page .closing h2{font-size:clamp(48px,12vw,70px)!important}
+ .registration-page .closing:after{width:105vw}
+}
+@media(prefers-reduced-motion:reduce){.registration-page .closing:before,.registration-page .closing:after,.registration-page .closing>div{animation:none!important}}
