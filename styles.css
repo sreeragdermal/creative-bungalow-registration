@@ -1170,3 +1170,25 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
  #about.editorial-section .edition-entry,#about.editorial-section .edition-entry+.edition-entry{padding:20px 0!important}
  #about.editorial-section .edition-copy p{font-size:12px!important;line-height:1.75!important}
 }
+
+
+/* Third-edition hero artwork: supplied transparent PNG with subtle brand orbits */
+.hero{isolation:isolate;background:
+  radial-gradient(ellipse at 76% 78%,rgba(255,114,44,.13),transparent 36%),
+  radial-gradient(ellipse at 69% 25%,rgba(186,45,182,.13),transparent 34%),
+  radial-gradient(ellipse at 15% 90%,rgba(57,85,198,.16),transparent 38%),
+  var(--ink);
+}
+.hero-art{min-height:500px;position:relative;display:grid;place-items:center;overflow:visible;isolation:isolate}
+.hero-art::before{content:"";position:absolute;inset:8% 4%;border-radius:50%;background:radial-gradient(ellipse,rgba(186,45,182,.13),rgba(255,114,44,.08) 48%,transparent 72%);filter:blur(24px);z-index:-2;animation:heroGlow 8s ease-in-out infinite alternate}
+.hero-orbit{position:absolute;display:block;width:min(96%,500px);aspect-ratio:1.18/1;border:1px solid rgba(57,85,198,.72);border-radius:50%;z-index:-1;pointer-events:none}
+.hero-orbit-a{transform:rotate(-25deg) scaleY(.78);animation:heroOrbitA 18s ease-in-out infinite alternate}
+.hero-orbit-b{width:min(82%,420px);border-color:rgba(239,51,82,.55);transform:rotate(24deg) scaleY(.8);animation:heroOrbitB 21s ease-in-out infinite alternate}
+.hero-edition-art{display:block;width:min(100%,510px);height:auto;max-height:540px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 24px 48px rgba(0,0,0,.22));animation:heroArtFloat 7s ease-in-out infinite}
+@keyframes heroArtFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+@keyframes heroOrbitA{0%{transform:rotate(-25deg) scaleY(.78)}100%{transform:rotate(-18deg) scaleY(.78) translateY(-5px)}}
+@keyframes heroOrbitB{0%{transform:rotate(24deg) scaleY(.8)}100%{transform:rotate(31deg) scaleY(.8) translateY(5px)}}
+@keyframes heroGlow{from{opacity:.65;transform:scale(.96)}to{opacity:1;transform:scale(1.04)}}
+@media(max-width:1020px){.hero-art{min-height:420px}.hero-edition-art{width:min(100%,440px);max-height:460px}}
+@media(max-width:700px){.hero-art{min-height:310px;margin-top:28px}.hero-edition-art{width:min(88%,340px);max-height:350px}.hero-orbit{width:min(94%,350px)}.hero-orbit-b{width:min(80%,290px)}}
+@media(prefers-reduced-motion:reduce){.hero-edition-art,.hero-orbit-a,.hero-orbit-b,.hero-art::before{animation:none!important}}
