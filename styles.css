@@ -1303,16 +1303,16 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
 }
 .home-brand-pair .spase-logo{
   display:block;
-  width:clamp(110px,12vw,150px);
+  width:clamp(90px,10.5vw,130px);
   height:auto;
-  max-height:46px;
+  max-height:40px;
   object-fit:contain;
 }
-.site-footer .home-brand-pair .spase-logo{max-height:42px}
+.site-footer .home-brand-pair .spase-logo{max-height:36px}
 @media(max-width:760px){
   .home-brand-pair{gap:10px}
-  .home-brand-pair .spase-logo{width:clamp(96px,26vw,126px);max-height:38px}
-  .site-footer .home-brand-pair .spase-logo{max-height:34px}
+  .home-brand-pair .spase-logo{width:clamp(82px,22vw,108px);max-height:32px}
+  .site-footer .home-brand-pair .spase-logo{max-height:30px}
 }
 
 /* Keep the navigation and admin dashboard bar visible while scrolling */
