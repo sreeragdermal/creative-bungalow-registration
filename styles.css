@@ -261,38 +261,34 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
 
 /* Auto-moving 4:5 media gallery — media assets can be added later */
 .media-marquee{width:100%;overflow:hidden;position:relative;margin-top:34px;padding:2px 0 8px}
-.media-track{display:flex;align-items:stretch;gap:14px;width:max-content;animation:media-gallery-scroll 42s linear infinite}
+.media-track{display:flex;align-items:stretch;gap:14px;width:max-content;animation:media-gallery-scroll 48s linear infinite}
 .media-marquee:hover .media-track{animation-play-state:paused}
-.media-placeholder{
- width:clamp(150px,18vw,220px);
+.media-gallery-card{
+ width:clamp(190px,22vw,260px);
  aspect-ratio:4/5;
  flex:0 0 auto;
  position:relative;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- gap:12px;
  overflow:hidden;
  border:1px solid rgba(255,255,255,.16);
- background:linear-gradient(145deg,#1b1b22 0%,#121217 58%,#21141b 100%);
- color:#aeb0ba;
+ background:#111116;
 }
-.media-placeholder:nth-child(3n+2){background:linear-gradient(145deg,#21151c,#15151b 70%)}
-.media-placeholder:nth-child(3n){background:linear-gradient(145deg,#171c25,#121217 70%)}
-.media-placeholder:after{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.07);pointer-events:none}
-.media-index{position:absolute;top:18px;left:18px;font-size:9px;letter-spacing:.12em;color:#ff7435;font-weight:700}
-.media-placeholder-mark{width:42px;height:42px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:300;color:#f23862}
-.media-placeholder small{font-size:8px;letter-spacing:.16em;color:#aeb0ba}
-.media-note{margin:12px 0 0;color:#9da0aa;font-size:10px;letter-spacing:.04em}
+.media-gallery-card img,.media-gallery-card iframe{
+ display:block;
+ width:100%;
+ height:100%;
+ border:0;
+ object-fit:cover;
+}
+.media-gallery-card iframe{position:absolute;inset:0}
+.media-gallery-duplicate{pointer-events:none}
 @keyframes media-gallery-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:760px){
  .media-marquee{margin-top:24px}
- .media-track{gap:10px;animation-duration:34s}
- .media-placeholder{width:clamp(138px,42vw,190px)}
+ .media-track{gap:10px;animation-duration:42s}
+ .media-gallery-card{width:clamp(190px,66vw,250px)}
 }
 @media(prefers-reduced-motion:reduce){.media-track{animation:none;transform:none}}
-
+ 
 /* Clean editorial page structure inspired by the supplied Hortus reference.
    Keep Creative Bungalow's existing dark palette, pink/orange accents and Space Grotesk. */
 .editorial-section{
