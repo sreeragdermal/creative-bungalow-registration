@@ -1293,3 +1293,24 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
   .partners-section .partner-slot{gap:16px}
   .partners-section .partner-role{font-size:9px;letter-spacing:.14em}
 }
+
+/* Homepage co-branding */
+.home-brand-pair{
+  display:flex;
+  align-items:center;
+  gap:clamp(10px,1.5vw,20px);
+  min-width:0;
+}
+.home-brand-pair .spase-logo{
+  display:block;
+  width:clamp(110px,12vw,150px);
+  height:auto;
+  max-height:46px;
+  object-fit:contain;
+}
+.site-footer .home-brand-pair .spase-logo{max-height:42px}
+@media(max-width:760px){
+  .home-brand-pair{gap:10px}
+  .home-brand-pair .spase-logo{width:clamp(96px,26vw,126px);max-height:38px}
+  .site-footer .home-brand-pair .spase-logo{max-height:34px}
+}
