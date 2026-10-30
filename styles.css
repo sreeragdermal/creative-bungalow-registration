@@ -1245,8 +1245,8 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
 }
 .partners-section .partner-slot img{
   width:100%;
-  max-width:230px;
-  height:92px;
+  max-width:260px;
+  height:128px;
   object-fit:contain;
   opacity:1;
 }
@@ -1256,8 +1256,8 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
     padding:18px;
   }
   .partners-section .partner-slot img{
-    max-width:185px;
-    height:76px;
+    max-width:200px;
+    height:100px;
   }
   .partners-section .partner-slot:nth-child(3){
     border-left:0!important;
