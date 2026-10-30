@@ -856,3 +856,156 @@ a.invite-button{
   border-radius:0!important;
   clip-path:none!important;
 }
+
+/* Registration + admin pages: align with the Creative Bungalow homepage identity */
+.registration-page,.admin-page{
+  min-height:100vh;background:
+    radial-gradient(ellipse at 12% 10%,rgba(57,85,198,.12),transparent 34%),
+    radial-gradient(ellipse at 88% 85%,rgba(255,114,44,.09),transparent 32%),
+    #0b0b0e!important;
+  color:#f6f4f2!important;
+  font-family:"Space Grotesk",Arial,sans-serif!important;
+}
+.registration-page .topline,.admin-page .topline{
+  background:linear-gradient(90deg,#ef3352,#ba2db6)!important;color:#fff!important;
+}
+.registration-page .site-header,.admin-page .site-header{
+  background:rgba(11,11,14,.88);border-bottom:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.registration-page .brand-logo,.admin-page .brand-logo{
+  display:block;width:clamp(130px,13vw,164px);height:auto;max-height:54px;object-fit:contain;object-position:left center;
+}
+.registration-page .site-header nav,.admin-page .site-header nav{color:#f6f4f2}
+.registration-page .site-header nav a:not(.nav-cta),.admin-page .site-header nav a:not(.nav-cta){opacity:.8}
+.registration-page .nav-cta,.admin-page .nav-cta{
+  border:1px solid rgba(255,255,255,.65);border-radius:0!important;color:#fff;
+}
+.registration-page .register{
+  max-width:1440px;margin:0 auto;padding-top:92px;padding-bottom:105px;
+  grid-template-columns:minmax(130px,.48fr) minmax(260px,.85fr) minmax(420px,1.35fr);
+  gap:clamp(24px,4vw,62px);align-items:start;
+}
+.registration-page .section-index{color:#a7a4ad}
+.registration-page .section-index span,.registration-page .eyebrow{color:#ff722c}
+.registration-page .register-intro h2{
+  color:#f7f5f2;font-family:"Space Grotesk",Arial,sans-serif;font-weight:700;
+  font-size:clamp(52px,5.4vw,76px);letter-spacing:-.075em;line-height:.95;
+}
+.registration-page .register-intro h2 em{color:#ef3352;font-style:normal}
+.registration-page .register-intro>p{color:#c1bdc6;font-size:13px;line-height:1.85}
+.registration-page .fee{border-color:rgba(255,255,255,.17)}
+.registration-page .fee small,.registration-page .muted{color:#a7a4ad}
+.registration-page .fee strong{color:#fff}
+.registration-page .form-shell{
+  background:rgba(22,22,29,.94);border:1px solid rgba(255,255,255,.16);
+  border-radius:0!important;padding:clamp(22px,3vw,38px);color:#f7f5f2;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+}
+.registration-page .form-title h3,.registration-page .field>span:first-child,
+.registration-page .field legend{color:#f7f5f2}
+.registration-page .form-title p,.registration-page .form-footnote{color:#aaa6b1}
+.registration-page .form-title>span,.registration-page .upload-icon{
+  background:linear-gradient(135deg,#ef3352,#ba2db6);color:#fff;border-radius:0!important;
+}
+.registration-page .field input:not([type=radio]):not([type=file]){
+  background:#0d0e13;color:#f7f5f2;border:1px solid rgba(255,255,255,.2);border-radius:0!important;
+}
+.registration-page .field input::placeholder{color:#777783}
+.registration-page .field input:focus{border-color:#ef3352;box-shadow:0 0 0 2px rgba(239,51,82,.16)}
+.registration-page .choice span{background:#101117;border:1px solid rgba(255,255,255,.2);color:#e9e6eb;border-radius:0!important}
+.registration-page .choice input:checked+span{background:rgba(239,51,82,.13);border-color:#ef3352;box-shadow:inset 0 0 0 1px #ef3352}
+.registration-page .form-divider{background:rgba(255,255,255,.14)}
+.registration-page .payment-box{background:#111219;border:1px solid rgba(255,255,255,.17);border-radius:0!important}
+.registration-page .payment-box>p,.registration-page .payment-box .caution{color:#b7b3bd}
+.registration-page .payment-top strong{color:#fff}
+.registration-page .payment-top small,.registration-page .upi-row small{color:#aaa6b1}
+.registration-page .upi-tag{background:#ef3352;color:#fff;border-radius:0!important}
+.registration-page .upi-row{background:#0b0c11;border:1px solid rgba(255,255,255,.18);border-radius:0!important}
+.registration-page .upi-row strong{color:#fff}
+.registration-page .copy-button,.admin-page .copy-button{
+  background:transparent;border:1px solid rgba(255,255,255,.32);color:#f7f5f2;border-radius:0!important;
+}
+.registration-page .copy-button:hover,.admin-page .copy-button:hover{background:#ef3352;border-color:#ef3352}
+.registration-page .upload-box{background:#0d0e13;border:1px dashed rgba(255,255,255,.34);border-radius:0!important;color:#f7f5f2}
+.registration-page .upload-box small{color:#aaa6b1}
+.registration-page .consent{color:#c4c0ca}
+.registration-page .consent input{accent-color:#ef3352}
+.registration-page .button-dark,.admin-page .button-dark{
+  background:linear-gradient(105deg,#ef3352,#ba2db6)!important;color:#fff!important;border-radius:0!important;
+}
+.registration-page .notice{border-radius:0!important}
+.registration-page .warning{background:rgba(255,114,44,.1);border:1px solid rgba(255,114,44,.5);color:#ffd4bf}
+.registration-page .closing{
+  background:
+    radial-gradient(ellipse at 50% 85%,rgba(255,114,44,.16),transparent 45%),
+    radial-gradient(rgba(255,255,255,.1) .65px,transparent .85px),
+    #0d0d12!important;background-size:auto,13px 13px,auto!important;
+  color:#f7f5f2;padding:75px 8%;border-top:1px solid rgba(255,255,255,.13)
+}
+.registration-page .closing h2{color:#fff}
+.registration-page .closing h2 em{color:#ef3352;font-style:normal}
+.registration-page .closing .button-dark{display:inline-flex;padding:0 24px;min-height:52px}
+.registration-page .site-footer,.admin-page .site-footer{
+  background:transparent!important;color:#f7f5f2;border-top:1px solid rgba(255,255,255,.13);
+}
+.registration-page .site-footer>span,.admin-page .site-footer>span{color:#aaa6b1}
+.registration-page .site-footer>a:last-child,.admin-page .site-footer>a:last-child{color:#f7f5f2}
+.registration-page .site-footer .brand-logo,.admin-page .site-footer .brand-logo{width:138px;max-height:48px}
+.admin-page{padding:32px clamp(18px,5vw,72px)}
+.admin-page .admin-container{max-width:1440px;margin:0 auto}
+.admin-page .admin-container>.brand{margin:0 0 34px}
+.admin-page .admin-login{max-width:540px;margin:35px auto 80px}
+.admin-page .admin-card{
+  background:rgba(22,22,29,.94);border:1px solid rgba(255,255,255,.16);
+  border-radius:0!important;padding:clamp(22px,3vw,34px);color:#f7f5f2;
+  box-shadow:0 20px 65px rgba(0,0,0,.18);
+}
+.admin-page .admin-top-label{color:#ff722c;letter-spacing:.16em}
+.admin-page h1,.admin-page h2,.admin-page h3{color:#f7f5f2}
+.admin-page .admin-header h1{font-size:clamp(38px,5vw,64px);letter-spacing:-.075em}
+.admin-page .admin-header p,.admin-page .admin-status{color:#aaa6b1}
+.admin-page .field>span:first-child{color:#f7f5f2}
+.admin-page .field input:not([type=radio]):not([type=file]),.admin-page .admin-toolbar input{
+  background:#0d0e13;color:#f7f5f2;border:1px solid rgba(255,255,255,.2);border-radius:0!important;
+}
+.admin-page .field input::placeholder,.admin-page .admin-toolbar input::placeholder{color:#777783}
+.admin-page .button-dark{background:linear-gradient(105deg,#ef3352,#ba2db6)!important;color:#fff!important}
+.admin-page .admin-table{color:#f2eff4}
+.admin-page .admin-table th{color:#ff8a68}
+.admin-page .admin-table th,.admin-page .admin-table td{border-bottom:1px solid rgba(255,255,255,.13)}
+.admin-page .admin-empty{color:#aaa6b1}
+.admin-page .status-pill{border-radius:0!important;background:rgba(255,114,44,.16);color:#ffd4bf}
+.admin-page .status-pill.verified{background:rgba(90,180,120,.17);color:#9de0b2}
+.admin-page .status-pill.rejected{background:rgba(239,51,82,.17);color:#ff9aaa}
+.admin-page .admin-action{border:1px solid rgba(255,255,255,.28);color:#f7f5f2;border-radius:0!important}
+.admin-page .admin-action:hover{background:#ef3352}
+.admin-page .notice{border-radius:0!important}
+.admin-page .warning{background:rgba(255,114,44,.1);border:1px solid rgba(255,114,44,.5);color:#ffd4bf}
+.admin-page .captcha-wrap p,.admin-page .form-footnote{color:#aaa6b1}
+@media(max-width:1020px){
+ .registration-page .register{grid-template-columns: minmax(120px,.45fr) minmax(240px,1fr);gap:28px}
+ .registration-page .form-shell{grid-column:2}
+}
+@media(max-width:700px){
+ .registration-page .topline{padding:0 18px}
+ .registration-page .site-header{height:72px;padding:0 18px}
+ .registration-page .site-header nav{gap:12px;font-size:10px}
+ .registration-page .site-header nav a:not(.nav-cta){display:none}
+ .registration-page .register{display:flex;flex-direction:column;padding:65px 18px 75px;gap:24px}
+ .registration-page .register>.section-index{margin-bottom:5px}
+ .registration-page .register-intro h2{font-size:clamp(52px,14vw,68px)}
+ .registration-page .form-shell{width:100%;padding:21px 16px}
+ .registration-page .site-footer{padding:22px 18px;flex-wrap:wrap}
+ .registration-page .site-footer>span{order:3;width:100%;font-size:7px}
+ .admin-page{padding:22px 12px}
+ .admin-page .admin-container>.brand{margin-bottom:25px}
+ .admin-page .admin-login{margin:25px auto 55px}
+ .admin-page .admin-header{align-items:flex-start;flex-direction:column}
+ .admin-page .admin-toolbar{align-items:stretch;flex-direction:column}
+ .admin-page .admin-toolbar input{max-width:none;width:100%}
+ .admin-page .admin-card{padding:18px 14px}
+ .admin-page .admin-table-wrap{margin-left:-4px;margin-right:-4px}
+ .admin-page .site-footer{padding:20px 6px;flex-wrap:wrap}
+ .admin-page .site-footer>span{order:3;width:100%}
+}
