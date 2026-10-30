@@ -1268,3 +1268,28 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
     border-left:1px solid rgba(255,255,255,.24)!important;
   }
 }
+
+
+/* Partner role labels above each transparent logo */
+.partners-section .partner-slot{
+  flex-direction:column;
+  gap:22px;
+}
+.partners-section .partner-role{
+  margin:0;
+  color:rgba(255,255,255,.68);
+  font-family:inherit;
+  font-size:11px;
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-align:center;
+  text-transform:uppercase;
+}
+.partners-section .partner-slot img{
+  flex:0 0 auto;
+}
+@media(max-width:700px){
+  .partners-section .partner-slot{gap:16px}
+  .partners-section .partner-role{font-size:9px;letter-spacing:.14em}
+}
