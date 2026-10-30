@@ -10,6 +10,21 @@ let turnstileWidgetId = null;
 let turnstileToken = "";
 
 const configured = (value) => typeof value === "string" && value.length > 0 && !value.startsWith("PASTE_");
+function icon(name) {
+  const paths = {
+    "arrow-up-right": "M4 12 12 4M5 4h7v7",
+    check: "m3 8 3.2 3.2L13 4.5"
+  };
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "icon");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", paths[name]);
+  svg.append(path);
+  return svg;
+}
 const hasProjectConfig = configured(config.supabaseUrl) && configured(config.supabasePublishableKey) && configured(config.turnstileSiteKey);
 const registrationEnabled = config.registrationEnabled === true;
 document.getElementById("upi-id").textContent = config.upiId || "UPI ID not configured";
@@ -84,11 +99,11 @@ fileInput.addEventListener("change", () => {
   showMessage("");
 });
 document.getElementById("copy-upi").addEventListener("click", async function () {
-  try { await navigator.clipboard.writeText(config.upiId || "dummy@okicici"); this.textContent = "Copied ✓"; }
+  try { await navigator.clipboard.writeText(config.upiId || "dummy@okicici"); this.replaceChildren("Copied ", icon("check")); }
   catch { showMessage("Copy is unavailable here. Please copy the UPI ID manually."); }
 });
 document.getElementById("copy-reference").addEventListener("click", async function () {
-  try { await navigator.clipboard.writeText(document.getElementById("registration-code").textContent); this.textContent = "Copied ✓"; }
+  try { await navigator.clipboard.writeText(document.getElementById("registration-code").textContent); this.replaceChildren("Copied ", icon("check")); }
   catch { showMessage("Please select and copy the registration reference manually."); }
 });
 form.addEventListener("submit", async (event) => {
@@ -132,6 +147,8 @@ form.addEventListener("submit", async (event) => {
     if (window.turnstile && turnstileWidgetId !== null) window.turnstile.reset(turnstileWidgetId);
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = "Submit registration <b>↗︎</b>";
+    const arrow = document.createElement("b");
+    arrow.append(icon("arrow-up-right"));
+    submitButton.replaceChildren("Submit registration ", arrow);
   }
 });

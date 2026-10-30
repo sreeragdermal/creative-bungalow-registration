@@ -668,7 +668,14 @@ body:before{
 .button-lime:hover{transform:translateY(-3px);box-shadow:0 15px 42px rgba(239,51,82,.3)}
 .ticker{background:linear-gradient(90deg,var(--cb-pink),#d72f83 48%,var(--cb-purple));color:#fff}
 .ticker-track{animation:ticker-scroll 28s linear infinite;will-change:transform}
-.ticker-track b{color:#fff}
+.ticker-track b{color:#fff;display:inline-flex;align-items:center}
+.icon{display:inline-block;width:1em;height:1em;flex:none;vertical-align:-.16em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-spark{fill:currentColor;stroke:none}
+.ticker-track .icon{width:18px;height:18px;vertical-align:middle}
+.closing>div .icon{width:32px;height:32px}
+.upload-icon .icon{width:16px;height:16px}
+.upload-arrow .icon{width:15px;height:15px}
+.success-icon .icon{width:24px;height:24px}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes cb-disc-float{0%,100%{transform:translate3d(0,0,0) rotate(-10deg)}50%{transform:translate3d(0,-13px,0) rotate(-6deg)}}
 @keyframes cb-orbit-a{from{transform:rotate(-24deg) scaleY(.76)}to{transform:rotate(336deg) scaleY(.76)}}
@@ -776,6 +783,7 @@ body:before{
   transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
 }
 .invite-button span{font-size:17px}
+.invite-button .icon{width:17px;height:17px}
 .invite-button:hover{transform:translateY(-3px);background:#f04a6a;box-shadow:0 12px 34px rgba(239,51,82,.24)}
 @media(max-width:700px){
  .invite-cta{min-height:510px;padding:85px 22px 80px!important}
@@ -807,6 +815,7 @@ body:before{
 .footer-socials a{color:#f5f2f4!important;transition:color .2s ease}
 .footer-socials a:hover{color:var(--cb-pink)!important}
 .footer-socials a span{color:var(--cb-pink)}
+.footer-socials .icon{width:12px;height:12px}
 .site-footer>a:last-child{color:#f5f2f4!important;transition:color .2s ease}
 .site-footer>a:last-child:hover{color:var(--cb-pink)!important}
 @media(max-width:700px){

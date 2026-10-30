@@ -62,6 +62,21 @@ function el(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
+function icon(name) {
+  const paths = {
+    "arrow-up-right": "M4 12 12 4M5 4h7v7",
+    check: "m3 8 3.2 3.2L13 4.5"
+  };
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "icon");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", paths[name]);
+  svg.append(path);
+  return svg;
+}
 function cell(row, child) {
   const td = document.createElement("td");
   if (child) td.append(child);
@@ -127,7 +142,8 @@ function renderRows() {
     tr.append(paymentCell);
     const screenshotCell = document.createElement("td");
     if (registration.screenshotUrl) {
-      const link = el("a", "View screenshot ↗︎", "signed-link");
+      const link = el("a", "", "signed-link");
+      link.append("View screenshot ", icon("arrow-up-right"));
       link.href = registration.screenshotUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -141,7 +157,9 @@ function renderRows() {
       review.append(actionButton("Verify", "verified", registration.id));
       review.append(actionButton("Reject", "rejected", registration.id));
     } else {
-      review.append(el("span", paymentStatus === "verified" ? "Reviewed ✓" : "Rejected", "admin-status"));
+      const reviewed = el("span", paymentStatus === "verified" ? "Reviewed " : "Rejected", "admin-status");
+      if (paymentStatus === "verified") reviewed.append(icon("check"));
+      review.append(reviewed);
     }
     const deleteButton = el("button", "Delete entry", "admin-action");
     deleteButton.type = "button";
@@ -280,7 +298,9 @@ loginForm.addEventListener("submit", async (event) => {
     setLoginMessage(error?.message || "Sign-in failed.");
   } finally {
     loginButton.disabled = false;
-    loginButton.innerHTML = "Sign in securely <b>↗︎</b>";
+    const arrow = document.createElement("b");
+    arrow.append(icon("arrow-up-right"));
+    loginButton.replaceChildren("Sign in securely ", arrow);
   }
 });
 document.getElementById("signout-button").addEventListener("click", async () => {
@@ -352,7 +372,7 @@ preflightButton.addEventListener("click", async () => {
       registrationRpc: "Registration database function"
     };
     const summary = Object.entries(result.checks || {}).map(([key, value]) =>
-      (value === "passed" ? "✓ " : "✗ ") + (labels[key] || key) + ": " + value
+      (value === "passed" ? "PASS " : "CHECK ") + (labels[key] || key) + ": " + value
     ).join(" | ");
     preflightResult.className = "form-message " + (result.ok ? "success" : "error");
     preflightResult.textContent = summary + ". " + (result.message || "");
