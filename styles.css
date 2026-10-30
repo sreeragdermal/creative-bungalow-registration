@@ -1314,3 +1314,18 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
   .home-brand-pair .spase-logo{width:clamp(96px,26vw,126px);max-height:38px}
   .site-footer .home-brand-pair .spase-logo{max-height:34px}
 }
+
+/* Keep the navigation and admin dashboard bar visible while scrolling */
+.site-header,
+.admin-page .admin-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.admin-page .admin-header{
+  padding:16px 0;
+  background:rgba(11,11,14,.94)!important;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.13);
+}
