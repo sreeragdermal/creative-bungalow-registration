@@ -803,11 +803,16 @@ body:before{
   object-fit:contain;
 }
 .site-footer>span{color:rgba(255,255,255,.62)!important}
+.footer-socials{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:12px;font-weight:600}
+.footer-socials a{color:#f5f2f4!important;transition:color .2s ease}
+.footer-socials a:hover{color:var(--cb-pink)!important}
+.footer-socials a span{color:var(--cb-pink)}
 .site-footer>a:last-child{color:#f5f2f4!important;transition:color .2s ease}
 .site-footer>a:last-child:hover{color:var(--cb-pink)!important}
 @media(max-width:700px){
- .site-footer{background:transparent!important;padding:20px 18px;min-height:84px}
+ .site-footer{background:transparent!important;padding:20px 18px;min-height:84px;flex-wrap:wrap;gap:14px}
  .site-footer .footer-logo{width:120px;max-height:44px}
+ .footer-socials{width:100%;order:4;gap:14px;font-size:11px}
 }
 
 /* Hero finish: tactile campaign texture and lighting from the supplied social artwork */
