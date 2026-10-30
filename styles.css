@@ -186,3 +186,75 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
  .edition-copy p{font-size:12px;line-height:1.85}
  .upcoming-edition{gap:10px 14px}
 }
+
+/* Unified two-column editorial layout for all main landing-page sections */
+.split-section,
+.about-section{
+  display:grid!important;
+  grid-template-columns:minmax(190px,.42fr) minmax(0,1.58fr);
+  column-gap:clamp(28px,5vw,76px);
+  align-items:start;
+  width:100%;
+  padding:clamp(64px,7.5vw,104px) max(6%,calc((100% - 1480px)/2));
+  box-sizing:border-box;
+}
+.about-section{background:#111216;color:#f7f7fa}
+.split-section-label{min-width:0;align-self:start}
+.split-section-label>span{display:block;color:#ff7435;font-size:10px;font-weight:700;letter-spacing:.14em;margin:3px 0 10px}
+.split-section-label>small{display:block;color:#b9bac4;font-size:9px;font-weight:700;letter-spacing:.13em}
+.split-section-content,.about-content-wide{width:100%;min-width:0;max-width:none;margin:0}
+.about-intro{max-width:100%;margin:0 0 48px}
+.about-intro h2,.content-heading{font-size:clamp(42px,5.4vw,72px);line-height:.98;letter-spacing:-.075em;margin:0 0 26px;color:#f7f7fa}
+.about-intro h2 em,.content-heading em,.partners-side-title em{font-style:normal;color:#f23862}
+.about-copy{max-width:940px;margin:0;display:grid;gap:14px}
+.about-copy p{font-size:13px;line-height:1.9;color:#c2c3cc;margin:0}
+.edition-history{display:block;width:100%;border-top:1px solid rgba(255,255,255,.18);margin-top:40px}
+.edition-entry,.edition-entry+.edition-entry{display:block;width:100%;padding:28px 0 30px;border:0;border-bottom:1px solid rgba(255,255,255,.18)}
+.edition-entry h3{font-size:clamp(28px,3vw,38px);margin:0 0 14px;color:#fff;letter-spacing:-.06em}
+.edition-copy{max-width:940px}
+.edition-copy p{font-size:12px;line-height:1.85;color:#b9bac4;margin:0 0 12px}
+.upcoming-edition{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 0 0}
+.highlights-section{background:#09090c;color:#fff}
+.highlights-section .split-section-content{min-width:0}
+.highlights-section .content-heading{margin-bottom:32px}
+.highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.highlight-tile{min-width:0}
+.partners-section{background:#111216;color:#fff}
+.partners-side-title h2{font-size:clamp(38px,4.8vw,64px);line-height:.98;letter-spacing:-.075em;color:#fff;margin:0}
+.partners-content{min-width:0}
+.partner-rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:none;min-width:0}
+.partner-slot{min-width:0;min-height:104px}
+.contact-section{background:#f23862;color:#fff}
+.contact-inner{width:100%;max-width:none;margin:0;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.contact-inner>div{min-width:0;max-width:760px}
+.contact-inner h2{font-size:clamp(42px,5.4vw,72px);line-height:.98;letter-spacing:-.075em;margin:0;color:#fff}
+.contact-inner h2 em{font-style:normal;color:#111216}
+.contact-inner p:not(.eyebrow){font-size:13px;line-height:1.8;max-width:470px}
+.closing{padding:70px 8%;text-align:center}
+@media(max-width:760px){
+ .split-section,.about-section{
+  grid-template-columns:minmax(0,1fr);
+  row-gap:24px;
+  padding:62px 6% 70px;
+ }
+ .split-section-label>span{margin-bottom:6px}
+ .partners-side-title h2{font-size:42px}
+ .about-intro{margin-bottom:36px}
+ .about-intro h2,.content-heading{font-size:clamp(42px,11vw,58px)}
+ .about-copy p{font-size:12px;line-height:1.85}
+ .edition-entry,.edition-entry+.edition-entry{padding:24px 0}
+ .edition-copy p{font-size:12px;line-height:1.8}
+ .highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .highlight-tile{min-height:210px}
+ .partner-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .partner-slot{min-height:82px}
+ .partner-slot:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.16)}
+ .partner-slot:nth-child(4){border-top:1px solid rgba(255,255,255,.16)}
+ .contact-inner{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+ .contact-inner h2{font-size:clamp(42px,11vw,58px)}
+ .closing{padding:60px 6%}
+}
+@media(max-width:420px){
+ .highlight-grid{grid-template-columns:1fr}
+ .highlight-tile{min-height:220px}
+}
