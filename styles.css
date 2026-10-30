@@ -296,6 +296,32 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
   .media-track{gap:12px;animation-duration:42s}
   .media-gallery-card{flex-basis:72vw;width:72vw;max-width:300px}
 }
+@media(max-width:900px) and (hover:none) and (pointer:coarse){
+  .media-marquee.touch-gallery{
+    overflow-x:auto;
+    overflow-y:hidden;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    touch-action:pan-x;
+    scroll-behavior:auto;
+  }
+  .media-marquee.touch-gallery::-webkit-scrollbar{display:none}
+  .media-marquee.touch-gallery .media-track{animation:none;transform:none;width:max-content}
+  .media-marquee.touch-gallery .media-gallery-card{scroll-snap-align:start}
+  .media-marquee.touch-gallery .media-video:not(.video-active) iframe{pointer-events:none}
+  .media-marquee.touch-gallery .media-video:not(.video-active):before{
+    content:"";position:absolute;z-index:2;left:50%;top:50%;width:48px;height:48px;
+    transform:translate(-50%,-50%);border-radius:50%;background:rgba(9,9,12,.62);
+    border:1px solid rgba(255,255,255,.8);pointer-events:none
+  }
+  .media-marquee.touch-gallery .media-video:not(.video-active):after{
+    content:"";position:absolute;z-index:3;left:50%;top:50%;transform:translate(-35%,-50%);
+    width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;
+    border-left:14px solid #fff;pointer-events:none
+  }
+}
 @media(prefers-reduced-motion:reduce){.media-track{animation:none;transform:none}}
  
 /* Clean editorial page structure inspired by the supplied Hortus reference.
