@@ -689,3 +689,43 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cb-orange);outline-
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+/* Supplied Creative Bungalow texture and original brand assets */
+body{position:relative;isolation:isolate;background:#0b0b0e}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.34;
+ background-image:linear-gradient(180deg,rgba(9,9,12,.42),rgba(9,9,12,.68)),url("data:image/webp;base64,UklGRs4CAABXRUJQVlA4IMICAABwGgCdASqIAaAAPrlcqlCnJSOnINgISOAXCWlu4Qk2m8nr57mpD0vNuLI075cAeR46QX4+BzAiEJaxTNiErX2ctQJSdTykZzzszT652si8hFYjNvYWygoLd/YoU84BMUW52HqryxROjv85yuDyOAMayRYeroHna7C5AS1Jq/zD6hjeka8zPlyko3I0xunQmZNGXb30IrnegNbG5p2x4plMmENwa9RO3EKk0motW1QGIbhAqCX4xWLJkyR8/OH0V4PKFhcz+1/OMGdo26WOIZF0FQYcYWV80EJim0hoAP7biSG2UHWXTN4KPWEGJYvmg/WpHVYqSaKI/bkd3TPHCP9APQgz3G+ZJwq8kxpa6x8PJ7Ns0EiTCePS41opK8M6O15ioq+R3FLyzXk1bnAZAUr/bATTwM+do6FnrHVAOWeGVF6JD360DcjgIOdtYl6lFkbQCoVXS/A7bJiGGhsP+WTNOMSadxQj52XX8STf3f0c656ffYr/T2FaAfZA6zn39iOyJ6O2S1bKB3QQqlXo7Pv+5SO1pSEoq75DO7KXKgz/T3tT/p4tSglNZTrD3xvXiA+ndPtFXO7gUVxysCutADLKQhisLFENoZpRjTjQdsvokCiFKUOfjo0OnJXU5NuFf9sev4Bp6FbgQZLlMRyOslj4H+7etROVa57sIPfNbXH7A1dqMM6kzrLpvWdsaFSrBlFekebha+/hmlWehsrIlRsE+jqP9+wek79TDOmZXeYOhYAErQDqteJV0Tfn5aJoaFs1m/OklRfK8vpI547S3CBl47UaE5ZrFzt8bZyy0RwnJ8rKYoK3w7zBs18q5RedPeKD5TtwmEplAzoOk6Nx5IV0aexScMpENihuvcaoVI2jcRGh3OsAknUGpDvJkSzVB3TS3kEqPuXfNXYAspPFZynHrwhf5AagNxAcN8i7/Zr7AAAA");
+ background-repeat:repeat;
+ background-size:auto,392px 160px;
+ background-blend-mode:normal,screen;
+}
+.brand{display:flex;align-items:center;min-width:0}
+.brand-logo{display:block;width:clamp(116px,13vw,164px);height:auto;max-height:56px;object-fit:contain;object-position:left center}
+.site-footer .brand-logo{width:138px;max-height:48px}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero:before{
+ content:"";position:absolute;z-index:-1;pointer-events:none;
+ width:clamp(180px,24vw,330px);aspect-ratio:1;right:-7%;top:-20%;
+ background:url("./assets/brand/element-01-pink-red.svg") center/contain no-repeat;
+ opacity:.82;animation:cb-brand-drift 16s ease-in-out infinite alternate;
+}
+.hero:after{
+ content:"";position:absolute;z-index:-1;pointer-events:none;
+ width:clamp(150px,20vw,260px);aspect-ratio:1;left:-8%;bottom:-24%;
+ background:url("./assets/brand/element-02-purple.svg") center/contain no-repeat;
+ opacity:.36;animation:cb-brand-drift 19s ease-in-out infinite alternate-reverse;
+}
+.hero-art:after{
+ content:"";position:absolute;pointer-events:none;width:92px;height:92px;right:2%;top:5%;
+ background:url("./assets/brand/element-03-orange-sunburst.svg") center/contain no-repeat;
+ opacity:.9;animation:cb-star-turn 28s linear infinite;
+}
+.ticker{position:relative;isolation:isolate}
+.ticker:after{content:"";position:absolute;right:5%;top:-26px;width:70px;height:70px;background:url("./assets/brand/element-04-blue-wave.svg") center/contain no-repeat;opacity:.28;pointer-events:none;z-index:-1}
+@keyframes cb-brand-drift{from{transform:translate3d(0,-8px,0) rotate(-8deg)}to{transform:translate3d(12px,14px,0) rotate(8deg)}}
+@media(max-width:760px){
+ .brand-logo{width:118px;max-height:44px}
+ .hero:before{width:190px;right:-13%;top:-8%;opacity:.6}
+ .hero:after{width:150px;left:-15%;bottom:-10%}
+ .hero-art:after{width:62px;height:62px;right:0}
+}
+@media(prefers-reduced-motion:reduce){.hero:before,.hero:after,.hero-art:after{animation:none}}
