@@ -1082,3 +1082,16 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
     linear-gradient(145deg,#09090c 0%,#101015 58%,#0a0a0d 100%);
   background-size:auto,auto,12px 12px,auto;
 }
+
+/* Clean invitation / See you in Wayanad area — remove dotted texture */
+.invite-cta:before{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+}
+.invite-cta{
+  background:
+    radial-gradient(ellipse at 50% 82%,rgba(255,114,44,.16),transparent 46%),
+    radial-gradient(ellipse at 50% 28%,rgba(186,45,182,.10),transparent 42%),
+    linear-gradient(145deg,#09090c 0%,#101015 58%,#0a0a0d 100%)!important;
+}
