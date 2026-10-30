@@ -1,6 +1,6 @@
 # Creative Bungalow Registration
 
-A premium mobile-friendly registration website for **ക്രീയേറ്റീവ് ബംഗ്ലാവ്**, Wayanad, December 5–6, 2026.
+A premium mobile-friendly registration website for **ക്രീയേറ്റീവ് ബംഗ്ലാവ്**, Wayanad, November 28–29, 2026.
 
 ## Features
 

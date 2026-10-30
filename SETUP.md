@@ -105,7 +105,7 @@ Only when these checks have passed, update `registrationEnabled: false` to `regi
 ## Event settings currently shown
 
 - Event: `ക്രീയേറ്റീവ് ബംഗ്ലാവ്`
-- Dates: December 5–6, 2026
+- Dates: November 28–29, 2026
 - Venue: Wayanad, Kerala
 - Registration fee: ₹3,000
 - Capacity: 100
