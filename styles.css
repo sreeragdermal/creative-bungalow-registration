@@ -119,3 +119,13 @@ body{background:#111216;color:#f7f7fa;font-family:"Space Grotesk",Arial,sans-ser
 .contact-inner .button-lime{background:#09090c;color:#fff;flex-shrink:0}
 @media(max-width:900px){.highlight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-section,.partners-section{grid-template-columns:.4fr 1fr;gap:28px}.site-header nav{gap:17px}}
 @media(max-width:700px){.site-header nav{gap:12px}.site-header nav a:not(.nav-cta){display:none}.about-section,.partners-section{display:block;padding-top:75px;padding-bottom:80px}.about-section>.section-index,.partners-section>.section-index{margin-bottom:32px}.about-content h2,.highlights-heading h2,.partners-content h2,.contact-inner h2{font-size:55px}.about-lead{font-size:13px;margin:22px 0 30px}.season-grid{grid-template-columns:1fr}.season-card{min-height:130px;padding:20px 0}.season-card+.season-card{border-left:0;border-top:1px solid rgba(255,255,255,.18);padding-left:0}.highlights-section{padding:70px 6% 78px}.highlights-heading{display:block;margin-bottom:30px}.section-count{display:block;margin-top:20px}.highlight-grid{gap:9px}.highlight-tile{min-height:225px;padding:12px}.tile-art{height:135px}.highlight-tile h3{font-size:12px}.art-type{font-size:29px;padding-left:10px}.partner-rail{grid-template-columns:repeat(2,1fr)}.partner-slot{min-height:75px}.partner-slot:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.15)}.partner-slot:nth-child(4){border-top:1px solid rgba(255,255,255,.15)}.contact-section{padding:70px 6%}.contact-inner{display:block}.contact-inner .button-lime{margin-top:30px}}
+
+/* About copy and first-edition story */
+.about-copy{max-width:850px;margin:26px 0 38px}
+.about-copy p,.first-edition p{font-size:13px;line-height:1.95;color:#b9bac4;margin:0 0 16px}
+.about-copy p:last-child,.first-edition p:last-child{margin-bottom:0}
+.first-edition{margin-top:34px;padding:28px 30px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(135deg,#191a20,#111216);border-radius:4px}
+.first-edition .eyebrow{font-size:9px;color:#ff7435;margin-bottom:12px}
+.first-edition h3{font-size:28px;letter-spacing:-.06em;margin:0 0 18px;color:#fff}
+.first-edition p{font-size:12px}
+@media(max-width:700px){.about-copy{margin:22px 0 28px}.about-copy p,.first-edition p{font-size:12px;line-height:1.85}.first-edition{padding:22px 18px;margin-top:25px}.first-edition h3{font-size:24px}}
