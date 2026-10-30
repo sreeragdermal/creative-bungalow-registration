@@ -1028,3 +1028,27 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
   background:transparent!important;
   background-image:none!important;
 }
+
+/* Registration page: clean two-column composition — intro left, form right */
+.registration-page .register{
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important;
+  gap:clamp(28px,5vw,76px)!important;
+  align-items:start!important;
+  max-width:1280px!important;
+  padding:88px clamp(24px,6vw,88px) 104px!important;
+}
+.registration-page .register>.section-index{display:none!important}
+.registration-page .register-intro{grid-column:1!important;min-width:0}
+.registration-page .form-shell{grid-column:2!important;grid-row:1!important;width:100%;min-width:0}
+.registration-page #setup-banner{grid-column:1/-1!important}
+@media(max-width:760px){
+ .registration-page .register{
+   display:flex!important;flex-direction:column!important;
+   gap:26px!important;padding:58px 18px 72px!important;
+ }
+ .registration-page .register-intro,.registration-page .form-shell{
+   width:100%!important;grid-column:auto!important;grid-row:auto!important;
+ }
+ .registration-page #setup-banner{width:100%}
+}
