@@ -804,3 +804,35 @@ body:before{
  .site-footer{background:transparent!important;padding:20px 18px;min-height:84px}
  .site-footer .footer-logo{width:120px;max-height:44px}
 }
+
+/* Hero finish: tactile campaign texture and lighting from the supplied social artwork */
+.hero{
+  background-color:#09090d!important;
+  background-image:
+    radial-gradient(ellipse at 8% 88%,rgba(35,75,255,.28),transparent 34%),
+    radial-gradient(ellipse at 82% 80%,rgba(255,114,44,.20),transparent 36%),
+    radial-gradient(ellipse at 58% 8%,rgba(186,45,182,.14),transparent 35%),
+    radial-gradient(rgba(255,255,255,.13) .65px,transparent .85px),
+    linear-gradient(112deg,#08090d 0%,#101018 48%,#100d11 100%)!important;
+  background-size:auto,auto,auto,13px 13px,auto!important;
+  background-blend-mode:screen,screen,screen,normal,normal;
+}
+.hero .disc{
+  background:radial-gradient(circle at 30% 22%,#ff9aaa 0%,#ef3352 27%,#ba2db6 65%,#251447 100%)!important;
+  color:#fff!important;
+  box-shadow:inset -24px -30px 55px rgba(0,0,0,.42),inset 12px 14px 30px rgba(255,255,255,.18),0 28px 75px rgba(186,45,182,.24)!important;
+}
+.hero .orbit-a{border-color:rgba(57,85,198,.58)!important}
+.hero .orbit-b{border-color:rgba(239,51,82,.42)!important}
+.hero .star{color:#ff722c!important;text-shadow:0 0 20px rgba(255,114,44,.55)}
+.hero .hero-subtitle{color:#c2bfca}
+@media(max-width:760px){
+ .hero{
+  background-image:
+    radial-gradient(ellipse at 8% 88%,rgba(35,75,255,.26),transparent 38%),
+    radial-gradient(ellipse at 82% 80%,rgba(255,114,44,.18),transparent 40%),
+    radial-gradient(rgba(255,255,255,.12) .6px,transparent .85px),
+    linear-gradient(112deg,#08090d,#101018 55%,#100d11)!important;
+  background-size:auto,auto,12px 12px,auto!important;
+ }
+}
