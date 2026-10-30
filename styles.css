@@ -846,3 +846,13 @@ body:before{
 .about-card,.reference-box,.status-pill{
   border-radius:0!important;
 }
+
+/* Explicitly square the two highlighted primary CTA buttons */
+.hero-actions > a.button.button-lime,
+#contact > a.button.button-lime,
+a.button.button-lime,
+a.button,
+a.invite-button{
+  border-radius:0!important;
+  clip-path:none!important;
+}
