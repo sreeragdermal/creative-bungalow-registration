@@ -88,11 +88,14 @@ function actionButton(label, status, registrationId) {
   });
   return button;
 }
-function renderRows() {
+function filteredRegistrations() {
   const query = filterInput.value.trim().toLowerCase();
-  const rows = allRegistrations.filter(r => [
+  return allRegistrations.filter(r => [
     r.full_name, r.registration_code, r.email, r.mobile, r.place, r.designation
   ].some(v => String(v || "").toLowerCase().includes(query)));
+}
+function renderRows() {
+  const rows = filteredRegistrations();
   tableBody.replaceChildren();
   if (!rows.length) {
     const tr = document.createElement("tr");
@@ -169,6 +172,31 @@ function renderRows() {
     tr.append(review);
     tableBody.append(tr);
   }
+}
+function exportParticipants() {
+  const headers = ["Name", "Email", "Reference", "Mobile", "Place", "Designation", "Work mode", "Experience", "Previous season", "Fee (INR)", "Payment status", "Registration status", "Submitted at"];
+  const escapeCsv = value => {
+    let text = String(value ?? "");
+    if (/^[\s\u0000-\u001f]*[=+@-]/.test(text)) text = "'" + text;
+    return `"${text.replace(/"/g, '""')}"`;
+  };
+  const rows = filteredRegistrations();
+  const values = rows.map(r => [
+    r.full_name, r.email, r.registration_code, r.mobile, r.place, r.designation,
+    r.work_mode, r.experience, r.attended_previous_season ? "Yes" : "No",
+    Number(r.fee_amount || 2999), r.payment_status || "pending",
+    r.registration_status || "submitted", r.created_at
+  ]);
+  const csv = "\uFEFF" + [headers, ...values].map(row => row.map(escapeCsv).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `creative-bungalow-participants-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  setNotice(`${rows.length} participant record(s) exported to an Excel-compatible CSV file.`);
 }
 async function loadRegistrations() {
   tableBody.replaceChildren();
@@ -263,6 +291,7 @@ document.getElementById("signout-button").addEventListener("click", async () => 
   setNotice("");
 });
 document.getElementById("refresh-button").addEventListener("click", loadRegistrations);
+document.getElementById("export-button").addEventListener("click", exportParticipants);
 
 const deleteTestButton = document.getElementById("delete-test-registrations");
 const testToolsResult = document.getElementById("test-tools-result");
