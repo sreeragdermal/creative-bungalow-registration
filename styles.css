@@ -1143,3 +1143,25 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
  .registration-page .closing:after{width:105vw}
 }
 @media(prefers-reduced-motion:reduce){.registration-page .closing:before,.registration-page .closing:after,.registration-page .closing>div{animation:none!important}}
+
+/* Compact About section: remove framed text box and reduce vertical footprint */
+#about.editorial-section{padding-top:clamp(48px,5vw,72px)!important;padding-bottom:clamp(52px,5vw,76px)!important}
+#about.editorial-section>.editorial-heading{margin-bottom:18px!important}
+#about.editorial-section>.editorial-heading h2{font-size:clamp(38px,4.4vw,58px)!important}
+#about.editorial-section>.editorial-copy{padding:0!important;border:0!important}
+#about.editorial-section .about-copy{max-width:1040px!important;gap:0!important}
+#about.editorial-section .about-copy p{font-size:14px!important;line-height:1.75!important}
+#about.editorial-section>.edition-history{margin-top:30px!important}
+#about.editorial-section .edition-entry{padding-top:22px!important;padding-bottom:20px!important}
+#about.editorial-section .edition-entry h3{font-size:clamp(25px,2.5vw,34px)!important;margin-bottom:10px!important}
+#about.editorial-section .edition-copy p{font-size:12px!important;line-height:1.75!important;margin-bottom:9px!important}
+#about.editorial-section .upcoming-edition{margin-top:14px!important}
+@media(max-width:760px){
+ #about.editorial-section{padding-top:48px!important;padding-bottom:54px!important}
+ #about.editorial-section>.editorial-heading{margin-bottom:14px!important}
+ #about.editorial-section>.editorial-copy{padding:0!important}
+ #about.editorial-section .about-copy p{font-size:13px!important;line-height:1.75!important}
+ #about.editorial-section>.edition-history{margin-top:22px!important}
+ #about.editorial-section .edition-entry,#about.editorial-section .edition-entry+.edition-entry{padding:20px 0!important}
+ #about.editorial-section .edition-copy p{font-size:12px!important;line-height:1.75!important}
+}
