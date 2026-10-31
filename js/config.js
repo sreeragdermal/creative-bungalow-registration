@@ -7,7 +7,7 @@ window.CREATIVE_BUNGALOW_CONFIG = {
   turnstileSiteKey: "0x4AAAAAAFq04RqMcGl2-SO4",
   upiId: "9048041277-2@ybl",
   eventName: "ക്രീയേറ്റീവ് ബംഗ്ലാവ്",
-  feeAmount: 2999,
+  feeAmount: 3499,
   maxParticipants: 100,
   githubPagesOrigin: "https://sreeragdermal.github.io",
   registrationEnabled: true // Public registration enabled after admin cleanup and backend secret update.
