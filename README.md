@@ -1,11 +1,11 @@
 # Creative Bungalow Registration
 
-A premium mobile-friendly registration website for **ക്രീയേറ്റീവ് ബംഗ്ലാവ്**, Wayanad, November 28–29, 2026.
+A premium mobile-friendly registration website for **ക്രീയേറ്റീവ് ബംഗ്ലാവ്**, Wayanad, December 5–6, 2026.
 
 ## Features
 
 - Responsive event landing page and participant form
-- ₹2,999 payment instructions and JPEG/PNG screenshot upload (max 5 MB)
+- ₹3,499 payment instructions and JPEG/PNG screenshot upload (max 5 MB)
 - Supabase backend with private screenshot storage
 - Capacity enforcement at 100 active registrations
 - Branded success page with registration reference
