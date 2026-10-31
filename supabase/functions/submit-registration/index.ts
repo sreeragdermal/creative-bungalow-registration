@@ -204,7 +204,7 @@ Deno.serve(async (req: Request) => {
         p_work_mode: workMode,
         p_attended_previous_season: season === "yes",
         p_payment_screenshot_path: path,
-        p_fee_amount: 2999,
+        p_fee_amount: 3499,
       }),
     });
     const rpcResult = await rpcResponse.json().catch(() => null);
