@@ -137,7 +137,7 @@ function renderRows() {
     const paymentCell = document.createElement("td");
     const paymentStatus = String(registration.payment_status || "pending");
     paymentCell.append(el("span", paymentStatus.toUpperCase(), "status-pill " + paymentStatus));
-    paymentCell.append(el("div", "₹" + Number(registration.fee_amount || 2999).toLocaleString("en-IN"), "admin-status"));
+    paymentCell.append(el("div", "₹" + Number(registration.fee_amount || 3499).toLocaleString("en-IN"), "admin-status"));
     paymentCell.append(el("div", registration.registration_status || "submitted", "admin-status"));
     tr.append(paymentCell);
     const screenshotCell = document.createElement("td");
@@ -202,7 +202,7 @@ function exportParticipants() {
   const values = rows.map(r => [
     r.full_name, r.email, r.registration_code, r.mobile, r.place, r.designation,
     r.work_mode, r.experience, r.attended_previous_season ? "Yes" : "No",
-    Number(r.fee_amount || 2999), r.payment_status || "pending",
+    Number(r.fee_amount || 3499), r.payment_status || "pending",
     r.registration_status || "submitted", r.created_at
   ]);
   const csv = "\uFEFF" + [headers, ...values].map(row => row.map(escapeCsv).join(",")).join("\r\n");
