@@ -1391,3 +1391,21 @@ body:before{display:none!important;background-image:none!important;opacity:0!imp
 .included-cta span{font-size:16px}
 @media(max-width:760px){.included-section{padding:58px 6% 64px}.included-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.included-item{min-height:112px;padding:17px 12px;gap:9px}.included-item h3{font-size:12px}.included-item p{font-size:10px}}
 @media(max-width:380px){.included-grid{grid-template-columns:1fr}.included-item{min-height:auto}}
+
+
+/* Friendlier presentation for the homepage inclusions */
+.included-section{background:radial-gradient(ellipse at 50% 0%,rgba(242,56,98,.09),transparent 58%),#111216}
+.included-heading{max-width:820px;margin-bottom:42px}
+.included-heading .eyebrow{color:#f23862;font-size:10px;letter-spacing:.18em}
+.included-heading h2{max-width:780px;margin:0 auto;font-size:clamp(36px,5vw,62px);line-height:1.08;letter-spacing:-.065em;text-transform:uppercase}
+.included-heading h2 em{display:inline-block;margin-top:5px;font-style:normal;color:#f23862}
+.included-heading>p:last-child{max-width:560px;margin:18px auto 0;color:#c5c5cf;font-size:14px;line-height:1.85}
+.included-grid{gap:12px;border:0}
+.included-item{min-height:116px;padding:22px 20px;gap:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:14px;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.included-item:hover{background:rgba(255,255,255,.065);border-color:rgba(242,56,98,.35);transform:translateY(-2px)}
+.included-item>span{display:grid;place-items:center;flex:0 0 27px;width:27px;height:27px;padding:0;border-radius:50%;background:rgba(242,56,98,.13);color:#ff6b8e;font-size:9px}
+.included-item h3{margin:2px 0 8px;font-size:14px;font-weight:600;letter-spacing:-.02em}
+.included-item p{font-size:11px;line-height:1.75;color:#b9bac4}
+.included-cta{margin-top:32px;box-shadow:0 8px 24px rgba(242,56,98,.16);transition:transform .2s ease,box-shadow .2s ease}
+.included-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(242,56,98,.24)}
+@media(max-width:760px){.included-heading h2{font-size:clamp(32px,9vw,48px)}.included-heading>p:last-child{font-size:12px}.included-grid{gap:9px}.included-item{padding:16px 12px;border-radius:12px}}
